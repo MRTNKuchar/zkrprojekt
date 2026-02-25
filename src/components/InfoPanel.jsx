@@ -1,22 +1,24 @@
 import { useLang } from '../contexts/LanguageContext'
 import { useTranslation } from '../translations'
 
-export default function InfoPanel({ type, year, security }) {
+export default function InfoPanel({ type, year, security, accentColor }) {
   const { lang } = useLang()
   const t = useTranslation(lang)
   const ip = t.infoPanel
 
   const secColors = {
     broken: '#ff4444',
-    secure: '#00ff41',
+    secure: accentColor || '#00ff41',
     quantum: '#ffaa00',
+    quantumSafe: accentColor || '#00ff41',
   }
 
   const secKey = security === 'broken' ? 'broken'
     : security === 'quantum' ? 'quantumVulnerable'
+    : security === 'quantumSafe' ? 'quantumSafe'
     : 'secure'
 
-  const secColor = secColors[security] || '#00ff41'
+  const secColor = secColors[security] || accentColor || '#00ff41'
   const secLabel = ip[secKey]
 
   return (

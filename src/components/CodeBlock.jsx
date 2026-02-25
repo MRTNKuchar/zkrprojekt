@@ -1,25 +1,64 @@
 import { useState } from 'react'
 
-// Very simple syntax highlighting for Python-style pseudocode
-function highlight(code) {
-  const lines = code.split('\n')
-  return lines.map((line, i) => {
-    let html = line
-      // Comments
-      .replace(/(#.*)$/g, '<span class="code-comment">$1</span>')
-      // Strings
-      .replace(/(".*?"|'.*?')/g, '<span class="code-string">$1</span>')
-      // Keywords
-      .replace(/\b(def|return|for|in|if|else|elif|and|or|not|import|from|class|while|True|False|None|mod|let|const|function)\b/g,
-               '<span class="code-keyword">$1</span>')
-      // Numbers
-      .replace(/\b(\d+)\b/g, '<span class="code-number">$1</span>')
-      // Function calls
-      .replace(/\b([a-zA-Z_]\w*)\s*(?=\()/g, '<span class="code-func">$1</span>')
-      // Operators
-      .replace(/([+\-*/%=<>!&|^~]+)/g, '<span class="code-op">$1</span>')
+// Token-based syntax highlighter — avoids applying regexes on already-injected HTML
+const TOKEN_PATTERNS = [
+  { type: 'comment', re: /(#.*)$/ },
+  { type: 'string',  re: /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/ },
+  { type: 'keyword', re: /\b(def|return|for|in|if|else|elif|and|or|not|import|from|class|while|True|False|None|let|const|function|async|await)\b/ },
+  { type: 'number',  re: /\b(\d+)\b/ },
+  { type: 'func',    re: /\b([a-zA-Z_]\w*)(?=\s*\()/ },
+  { type: 'op',      re: /([+\-*/%=!|^~]+|[<>]=?)/ },
+]
 
-    return `<span class="code-line" data-line="${i + 1}">${html}</span>`
+const TOKEN_CLASS = {
+  comment: 'code-comment',
+  string:  'code-string',
+  keyword: 'code-keyword',
+  number:  'code-number',
+  func:    'code-func',
+  op:      'code-op',
+}
+
+function escHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+function tokenizeLine(line) {
+  const tokens = []
+  let remaining = line
+
+  while (remaining.length > 0) {
+    let best = null
+
+    for (const { type, re } of TOKEN_PATTERNS) {
+      const m = remaining.match(re)
+      if (m && (best === null || m.index < best.index)) {
+        best = { index: m.index, text: m[1] ?? m[0], raw: m[0], type }
+      }
+    }
+
+    if (!best) {
+      tokens.push({ text: remaining, type: null })
+      break
+    }
+
+    if (best.index > 0) {
+      tokens.push({ text: remaining.slice(0, best.index), type: null })
+    }
+    tokens.push({ text: best.text, type: best.type })
+    remaining = remaining.slice(best.index + best.raw.length)
+  }
+
+  return tokens
+}
+
+function highlight(code) {
+  return code.split('\n').map((line, i) => {
+    const tokenHtml = tokenizeLine(line).map(({ text, type }) => {
+      const safe = escHtml(text)
+      return type ? `<span class="${TOKEN_CLASS[type]}">${safe}</span>` : safe
+    }).join('')
+    return `<span class="code-line" data-line="${i + 1}">${tokenHtml}</span>`
   }).join('\n')
 }
 

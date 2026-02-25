@@ -19,49 +19,63 @@ const ECC_CODE_SCRATCH = `# ====================================================
 # ============================================================
 # Krivka: y^2 = x^3 - 3x + 3  (mod 97) — male pole pro demo
 # Real ECC: secp256k1 s prvocislem ~2^256
+# ============================================================
 
 import random
 
-P = 97    # prvocislo (velikost pole)
-A = -3    # koeficient a
-B = 3     # koeficient b
-G = (13, 7)  # generatorovy bod (overeno: lezi na krivce)
+# --- Parametry krivky ---
+P = 97      # prvocislo definujici konecne pole Z_p
+A = -3      # koeficient a v rovnici krivky
+B =  3      # koeficient b v rovnici krivky
+G = (13, 7) # generatorovy bod (lezi na krivce, overeno)
+
+# N = rad bodu G = nejmensi n, pro ktere n*G = bod v nekonecnu
+# Pro tuto krivku N = 11  (spocteno iteraci)
+N = 11
 
 
 def mod_inv(a, p):
     """Modularni inverze pres rozsireny Eukliduv algoritmus."""
-    a, g, x, u = a % p, p, 0, 1
-    while a:
+    a = a % p
+    g, x, u = p, 0, 1
+    while a != 0:
         q = g // a
         g, a = a, g - q * a
         x, u = u, x - q * u
     return x % p
 
 
-def bod_soucet(P1, P2):
-    """Secte dva body na elipticke krivce nad Zp."""
-    if P1 is None: return P2
-    if P2 is None: return P1
-    x1, y1 = P1
-    x2, y2 = P2
+def bod_soucet(bod1, bod2):
+    """Secte dva body na elipticke krivce nad Z_p."""
+    if bod1 is None: return bod2
+    if bod2 is None: return bod1
+    x1, y1 = bod1
+    x2, y2 = bod2
     if x1 == x2 and (y1 + y2) % P == 0:
-        return None  # bod v nekonecnu
-    if P1 == P2:
-        # Zdvojeni bodu — tecna ke krivce
-        lam = (3 * x1 * x1 + A) * mod_inv(2 * y1, P) % P
+        return None  # bod v nekonecnu (neutralni prvek)
+    if bod1 == bod2:
+        # Zdvojeni bodu — smernice tecny
+        # lambda = (3*x1^2 + A) / (2*y1)  mod P
+        citatel    = (3 * x1 * x1 + A) % P
+        jmenovatel = mod_inv(2 * y1, P)
+        lam = (citatel * jmenovatel) % P
     else:
-        # Soucet ruznych bodu — secna
-        lam = (y2 - y1) * mod_inv(x2 - x1, P) % P
+        # Soucet ruznych bodu — smernice secny
+        # lambda = (y2 - y1) / (x2 - x1)  mod P
+        citatel    = (y2 - y1) % P
+        jmenovatel = mod_inv(x2 - x1, P)
+        lam = (citatel * jmenovatel) % P
     x3 = (lam * lam - x1 - x2) % P
     y3 = (lam * (x1 - x3) - y1) % P
     return (x3, y3)
 
 
 def skalar_nasob(k, bod):
-    """k-nasobek bodu (double-and-add algoritmus)."""
-    vysledek, scitanec = None, bod
+    """k-nasobek bodu — double-and-add algoritmus, O(log k)."""
+    vysledek = None   # bod v nekonecnu = neutralni prvek
+    scitanec = bod    # G, 2G, 4G, 8G, ...
     while k > 0:
-        if k & 1:
+        if k & 1:     # nejnizsi bit je 1
             vysledek = bod_soucet(vysledek, scitanec)
         scitanec = bod_soucet(scitanec, scitanec)
         k >>= 1
@@ -69,57 +83,76 @@ def skalar_nasob(k, bod):
 
 
 def hash_zpravy(zprava):
-    """Jednoduchy hash (pouze pro demo, ne kryptograficky!)."""
+    """Jednoduchy hash — POUZE PRO DEMO, ne kryptograficky!"""
     h = 0
     for znak in zprava:
-        h = (h * 31 + ord(znak)) % (P - 1)
-    return h or 1
+        h = (h * 31 + ord(znak)) % N
+    return h or 1  # hash nesmi byt 0
 
 
 # ============================================================
 #  ECDH — VYMENA KLICU
 # ============================================================
-alice_soukr = random.randint(2, P - 2)
-bob_soukr   = random.randint(2, P - 2)
+def demo_ecdh():
+    # Soukromy klic musi byt v [1, N-1]
+    alice_soukr = random.randint(2, N - 1)
+    bob_soukr   = random.randint(2, N - 1)
 
-alice_verejn = skalar_nasob(alice_soukr, G)  # A = a*G
-bob_verejn   = skalar_nasob(bob_soukr,   G)  # B = b*G
+    alice_verejn = skalar_nasob(alice_soukr, G)  # A = a*G
+    bob_verejn   = skalar_nasob(bob_soukr,   G)  # B = b*G
 
-alice_sdilene = skalar_nasob(alice_soukr, bob_verejn)   # a*B = a*b*G
-bob_sdilene   = skalar_nasob(bob_soukr,  alice_verejn)  # b*A = b*a*G
+    #   Alice: a * B = a*b*G
+    #   Bob:   b * A = b*a*G  (stejne!)
+    alice_sdilene = skalar_nasob(alice_soukr, bob_verejn)
+    bob_sdilene   = skalar_nasob(bob_soukr,  alice_verejn)
 
-print("=" * 52)
-print("  ECDH — vymena klicu na elipticke krivce")
-print(f"  Krivka: y^2 = x^3 {A}x + {B}  (mod {P})")
-print("=" * 52)
-print(f"[ALICE] soukromy klic : {alice_soukr}        (TAJNE!)")
-print(f"[ALICE] verejny klic  : {alice_verejn}")
-print(f"[BOB]   soukromy klic : {bob_soukr}        (TAJNE!)")
-print(f"[BOB]   verejny klic  : {bob_verejn}")
-print(f"[ALICE] sdilene tajemstvi: {alice_sdilene}")
-print(f"[BOB]   sdilene tajemstvi: {bob_sdilene}")
-print(f"Shoda: {alice_sdilene == bob_sdilene}  — soukrome klice si nikdy nevymenily!")
+    print("=" * 56)
+    print("  ECDH - vymena klicu na elipticke krivce")
+    print(f"  Krivka: y^2 = x^3 + ({A})x + {B}  (mod {P})")
+    print("=" * 56)
+    print(f"  [ALICE] soukromy klic  : {alice_soukr:<4}  (NIKDY neposila!)")
+    print(f"  [ALICE] verejny klic   : {alice_verejn}")
+    print(f"  [BOB]   soukromy klic  : {bob_soukr:<4}  (NIKDY neposila!)")
+    print(f"  [BOB]   verejny klic   : {bob_verejn}")
+    print(f"  [ALICE] sdilene tajemstvi: {alice_sdilene}")
+    print(f"  [BOB]   sdilene tajemstvi: {bob_sdilene}")
+    print(f"  Shoda: {'ANO' if alice_sdilene == bob_sdilene else 'NE'}")
+    return alice_soukr, alice_verejn
+
 
 # ============================================================
 #  ECDSA — PODPIS ZPRAVY
 # ============================================================
-zprava = "Tajemstvi je bezpecne"
-h = hash_zpravy(zprava)
-k = random.randint(2, P - 2)   # nahodne cislo pro kazdy podpis
-R = skalar_nasob(k, G)
-r = R[0] % P
-s = (mod_inv(k, P - 1) * (h + alice_soukr * r)) % (P - 1) or 1
+def demo_ecdsa(alice_soukr, alice_verejn):
+    zprava = "Tajemstvi je bezpecne"
+    h = hash_zpravy(zprava)
 
-print(f"\\n[ECDSA] Zprava: '{zprava}'")
-print(f"[ECDSA] Podpis Alicou: r={r}, s={s}")
+    # Nonce k: opakujeme dokud r != 0 a s != 0
+    while True:
+        k = random.randint(2, N - 1)
+        R = skalar_nasob(k, G)
+        if R is None: continue
+        r = R[0] % N
+        if r == 0: continue
+        # s = k^-1 * (h + a*r)  mod N
+        s = (mod_inv(k, N) * (h + alice_soukr * r)) % N
+        if s != 0: break
 
-# Overeni podpisu
-sInv = mod_inv(s, P - 1)
-u1 = (h * sInv) % (P - 1)
-u2 = (r * sInv) % (P - 1)
-bod = bod_soucet(skalar_nasob(u1, G), skalar_nasob(u2, alice_verejn))
-platny = bod and bod[0] % P == r
-print(f"[ECDSA] Overeni Bobem: {'PLATNY' if platny else 'NEPLATNY'}")
+    # Overeni: u1*G + u2*VK_Alice musi dat bod s x == r
+    s_inv = mod_inv(s, N)
+    u1 = (h * s_inv) % N
+    u2 = (r * s_inv) % N
+    overovaci_bod = bod_soucet(skalar_nasob(u1, G), skalar_nasob(u2, alice_verejn))
+    platny = overovaci_bod is not None and overovaci_bod[0] % N == r
+
+    print(f"\\n  [ECDSA] Zprava  : '{zprava}'")
+    print(f"  [ECDSA] Podpis  : r={r}, s={s}")
+    print(f"  [ECDSA] Overeni : {'PLATNY' if platny else 'NEPLATNY'}")
+
+
+if __name__ == "__main__":
+    alice_soukr, alice_verejn = demo_ecdh()
+    demo_ecdsa(alice_soukr, alice_verejn)
 `
 
 const ECC_CODE_PROD = `# ============================================================

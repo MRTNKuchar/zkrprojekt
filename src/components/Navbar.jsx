@@ -11,6 +11,7 @@ export default function Navbar() {
     { to: '/', label: t.nav.home },
     { to: '/caesar', label: t.nav.caesar },
     { to: '/ecc', label: t.nav.ecc },
+    { to: '/kyber', label: t.nav.kyber },
   ]
 
   return (

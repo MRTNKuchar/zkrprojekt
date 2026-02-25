@@ -5,6 +5,7 @@ import MatrixBackground from './components/MatrixBackground'
 import Landing from './pages/Landing'
 import Caesar from './pages/Caesar'
 import ECC from './pages/ECC'
+import Kyber from './pages/Kyber'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/caesar" element={<Caesar />} />
           <Route path="/ecc" element={<ECC />} />
+          <Route path="/kyber" element={<Kyber />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

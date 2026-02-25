@@ -6,6 +6,10 @@ const DEMO_P = 97
 const DEMO_A = -3
 const DEMO_B = 3
 
+// N = order of generator point G = smallest n where n*G = infinity
+// For this curve with G=(13,7): N=11  (computed by iteration)
+const DEMO_N = 11
+
 function mod(n, m) {
   return ((n % m) + m) % m
 }
@@ -47,7 +51,6 @@ function pointAdd(P, Q, a, p) {
 function scalarMult(k, P, a, p) {
   let result = null
   let addend = P
-  k = mod(k, p - 1) || 1
   let kk = k
   while (kk > 0) {
     if (kk & 1) result = pointAdd(result, addend, a, p)
@@ -88,11 +91,10 @@ function getGenerator() {
 
 export function generateKeyPair() {
   const G = getGenerator()
-  const p = DEMO_P
   const a = DEMO_A
-  // Random private key between 2 and p-2
-  const privateKey = 2 + Math.floor(Math.random() * (p - 3))
-  const publicKey = scalarMult(privateKey, G, a, p)
+  // Private key must be in [2, N-1] where N is the subgroup order
+  const privateKey = 2 + Math.floor(Math.random() * (DEMO_N - 2))
+  const publicKey = scalarMult(privateKey, G, a, DEMO_P)
   return { privateKey, publicKey, G }
 }
 
@@ -101,38 +103,45 @@ export function computeSharedSecret(myPrivateKey, theirPublicKey) {
 }
 
 // Simple hash for demo (not cryptographic)
+// Result is in [1, N-1] so it fits the subgroup order
 function simpleHash(msg) {
   let hash = 0
   for (const ch of msg) {
-    hash = (hash * 31 + ch.charCodeAt(0)) >>> 0
+    hash = (hash * 31 + ch.charCodeAt(0)) % DEMO_N
   }
-  return (hash % (DEMO_P - 2)) + 1
+  return hash || 1
 }
 
-// ECDSA-like demo signing (simplified, not real ECDSA)
+// ECDSA signing — all modular arithmetic is done modulo N (subgroup order)
 export function signMessage(message, privateKey, G) {
   const h = simpleHash(message)
-  const k = 2 + (h % (DEMO_P - 3))
-  const R = scalarMult(k, G, DEMO_A, DEMO_P)
-  if (!R) return null
-  const r = mod(R[0], DEMO_P)
-  const kInv = modInverse(k, DEMO_P - 1)
-  const s = mod(kInv * (h + privateKey * r), DEMO_P - 1) || 1
-  return { r, s }
+  // Retry until we get valid r and s (non-zero)
+  for (let attempt = 0; attempt < 50; attempt++) {
+    const k = 2 + Math.floor(Math.random() * (DEMO_N - 2))
+    const R = scalarMult(k, G, DEMO_A, DEMO_P)
+    if (!R) continue
+    const r = mod(R[0], DEMO_N)
+    if (r === 0) continue
+    const kInv = modInverse(k, DEMO_N)
+    const s = mod(kInv * (h + privateKey * r), DEMO_N)
+    if (s === 0) continue
+    return { r, s }
+  }
+  return null
 }
 
 export function verifySignature(message, signature, publicKey, G) {
   if (!signature || !publicKey) return false
   const { r, s } = signature
   const h = simpleHash(message)
-  const sInv = modInverse(s, DEMO_P - 1)
-  const u1 = mod(h * sInv, DEMO_P - 1)
-  const u2 = mod(r * sInv, DEMO_P - 1)
+  const sInv = modInverse(s, DEMO_N)
+  const u1 = mod(h * sInv, DEMO_N)
+  const u2 = mod(r * sInv, DEMO_N)
   const P1 = scalarMult(u1, G, DEMO_A, DEMO_P)
   const P2 = scalarMult(u2, publicKey, DEMO_A, DEMO_P)
   const point = pointAdd(P1, P2, DEMO_A, DEMO_P)
   if (!point) return false
-  return mod(point[0], DEMO_P) === r
+  return mod(point[0], DEMO_N) === r
 }
 
 export function getCurvePointsForVis() {
