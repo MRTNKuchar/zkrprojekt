@@ -6,6 +6,7 @@ import Landing from './pages/Landing'
 import Caesar from './pages/Caesar'
 import ECC from './pages/ECC'
 import Kyber from './pages/Kyber'
+import Otp from './pages/Otp'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/caesar" element={<Caesar />} />
           <Route path="/ecc" element={<ECC />} />
           <Route path="/kyber" element={<Kyber />} />
+          <Route path="/otp" element={<Otp />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

@@ -11,11 +11,13 @@ export default function InfoPanel({ type, year, security, accentColor }) {
     secure: accentColor || '#00ff41',
     quantum: '#ffaa00',
     quantumSafe: accentColor || '#00ff41',
+    perfect: accentColor || '#00ff41',
   }
 
   const secKey = security === 'broken' ? 'broken'
     : security === 'quantum' ? 'quantumVulnerable'
     : security === 'quantumSafe' ? 'quantumSafe'
+    : security === 'perfect' ? 'perfect'
     : 'secure'
 
   const secColor = secColors[security] || accentColor || '#00ff41'
