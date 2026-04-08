@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLang } from '../../contexts/LanguageContext'
 import { useTranslation } from '../../translations'
+import { PersonIcon } from '../../components/Icons'
 import {
   generateKeyPair,
   computeSharedSecret,
@@ -304,7 +305,7 @@ export default function EccLab() {
           {/* Alice */}
           <div className="border p-3" style={{ borderColor: '#44aaff' }}>
             <div className="text-center text-sm mb-3" style={{ color: '#44aaff', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
-              👩 {el.aliceLabel}
+              <PersonIcon size="1em" /> {el.aliceLabel}
             </div>
             {aliceKeys ? (
               <div className="space-y-2 text-xs" style={{ fontFamily: 'Share Tech Mono, monospace' }}>
@@ -333,7 +334,7 @@ export default function EccLab() {
           {/* Bob */}
           <div className="border p-3" style={{ borderColor: '#ffaa00' }}>
             <div className="text-center text-sm mb-3" style={{ color: '#ffaa00', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
-              👨 {el.bobLabel}
+              <PersonIcon size="1em" /> {el.bobLabel}
             </div>
             {bobKeys ? (
               <div className="space-y-2 text-xs" style={{ fontFamily: 'Share Tech Mono, monospace' }}>

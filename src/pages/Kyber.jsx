@@ -7,6 +7,7 @@ import InfoPanel from '../components/InfoPanel'
 import KyberLearn from './kyber/KyberLearn'
 import KyberLab from './kyber/KyberLab'
 import KyberTerminal from './kyber/KyberTerminal'
+import { BookIcon, FlaskIcon } from '../components/Icons'
 
 export default function Kyber() {
   const { lang } = useLang()
@@ -14,8 +15,8 @@ export default function Kyber() {
   const [activeTab, setActiveTab] = useState('learn')
 
   const tabs = [
-    { id: 'learn',    label: `📚 ${t.tabs.learn}` },
-    { id: 'lab',      label: `⚗️ ${t.tabs.lab}` },
+    { id: 'learn',    icon: <BookIcon />, label: t.tabs.learn },
+    { id: 'lab',      icon: <FlaskIcon />, label: t.tabs.lab },
     { id: 'terminal', label: `>_ ${t.tabs.terminal}` },
   ]
 

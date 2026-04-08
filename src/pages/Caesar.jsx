@@ -7,6 +7,7 @@ import InfoPanel from '../components/InfoPanel'
 import CaesarLearn from './caesar/CaesarLearn'
 import CaesarLab from './caesar/CaesarLab'
 import CaesarTerminal from './caesar/CaesarTerminal'
+import { BookIcon, FlaskIcon } from '../components/Icons'
 
 export default function Caesar() {
   const { lang } = useLang()
@@ -14,8 +15,8 @@ export default function Caesar() {
   const [activeTab, setActiveTab] = useState('learn')
 
   const tabs = [
-    { id: 'learn', label: `📚 ${t.tabs.learn}` },
-    { id: 'lab', label: `⚗️ ${t.tabs.lab}` },
+    { id: 'learn', icon: <BookIcon />, label: t.tabs.learn },
+    { id: 'lab', icon: <FlaskIcon />, label: t.tabs.lab },
     { id: 'terminal', label: `>_ ${t.tabs.terminal}` },
   ]
 

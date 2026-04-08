@@ -7,6 +7,7 @@ import InfoPanel from '../components/InfoPanel'
 import EccLearn from './ecc/EccLearn'
 import EccLab from './ecc/EccLab'
 import EccTerminal from './ecc/EccTerminal'
+import { BookIcon, FlaskIcon } from '../components/Icons'
 
 export default function ECC() {
   const { lang } = useLang()
@@ -14,8 +15,8 @@ export default function ECC() {
   const [activeTab, setActiveTab] = useState('learn')
 
   const tabs = [
-    { id: 'learn', label: `📚 ${t.tabs.learn}` },
-    { id: 'lab', label: `⚗️ ${t.tabs.lab}` },
+    { id: 'learn', icon: <BookIcon />, label: t.tabs.learn },
+    { id: 'lab', icon: <FlaskIcon />, label: t.tabs.lab },
     { id: 'terminal', label: `>_ ${t.tabs.terminal}` },
   ]
 

@@ -7,6 +7,7 @@ import InfoPanel from '../components/InfoPanel'
 import OtpLearn from './otp/OtpLearn'
 import OtpLab from './otp/OtpLab'
 import OtpTerminal from './otp/OtpTerminal'
+import { BookIcon, FlaskIcon } from '../components/Icons'
 
 export default function Otp() {
   const { lang } = useLang()
@@ -14,8 +15,8 @@ export default function Otp() {
   const [activeTab, setActiveTab] = useState('learn')
 
   const tabs = [
-    { id: 'learn',    label: `📚 ${t.tabs.learn}` },
-    { id: 'lab',      label: `⚗️ ${t.tabs.lab}` },
+    { id: 'learn',    icon: <BookIcon />, label: t.tabs.learn },
+    { id: 'lab',      icon: <FlaskIcon />, label: t.tabs.lab },
     { id: 'terminal', label: `>_ ${t.tabs.terminal}` },
   ]
 

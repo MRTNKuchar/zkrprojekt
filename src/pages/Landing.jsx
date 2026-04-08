@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../contexts/LanguageContext'
 import { useTranslation } from '../translations'
+import { KeyIcon, LightningIcon, DiamondIcon, LockIcon } from '../components/Icons'
 
 function TypingText({ text, delay = 0 }) {
   const [displayed, setDisplayed] = useState('')
@@ -48,7 +49,7 @@ export default function Landing() {
       to: '/caesar',
       data: lt.cards.caesar,
       statusColor: '#ff4444',
-      icon: '🔑',
+      icon: <KeyIcon size="1.1em" />,
       border: '#ff4444',
     },
     {
@@ -56,7 +57,7 @@ export default function Landing() {
       to: '/ecc',
       data: lt.cards.ecc,
       statusColor: '#00ff41',
-      icon: '⚡',
+      icon: <LightningIcon size="1.1em" />,
       border: '#00ff41',
     },
     {
@@ -64,7 +65,7 @@ export default function Landing() {
       to: '/kyber',
       data: lt.cards.kyber,
       statusColor: '#00ff41',
-      icon: '🔮',
+      icon: <DiamondIcon size="1.1em" />,
       border: '#00ff41',
     },
     {
@@ -72,7 +73,7 @@ export default function Landing() {
       to: '/otp',
       data: lt.cards.otp,
       statusColor: '#00ff41',
-      icon: '🔐',
+      icon: <LockIcon size="1.1em" />,
       border: '#00ff41',
     },
   ]
