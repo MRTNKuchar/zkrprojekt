@@ -13,6 +13,7 @@ export default function Navbar() {
     { to: '/ecc', label: t.nav.ecc },
     { to: '/kyber', label: t.nav.kyber },
     { to: '/otp', label: t.nav.otp },
+    { to: '/pojmy', label: t.nav.glossary },
   ]
 
   return (

@@ -7,6 +7,7 @@ import Caesar from './pages/Caesar'
 import ECC from './pages/ECC'
 import Kyber from './pages/Kyber'
 import Otp from './pages/Otp'
+import Glossary from './pages/Glossary'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/ecc" element={<ECC />} />
           <Route path="/kyber" element={<Kyber />} />
           <Route path="/otp" element={<Otp />} />
+          <Route path="/pojmy" element={<Glossary />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

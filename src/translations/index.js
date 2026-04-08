@@ -7,6 +7,7 @@ export const translations = {
       ecc: 'ECC',
       kyber: 'ML-KEM',
       otp: 'OTP',
+      glossary: 'POJMY',
       langToggle: 'EN',
     },
     // Landing
@@ -382,6 +383,14 @@ export const translations = {
       },
     },
     // Back button
+    glossary: {
+      pageTitle: 'Slovník pojmů',
+      subtitle: 'Výkladový slovník kryptografických pojmů a vizuální diagramy šifer',
+      search: 'Hledat pojem...',
+      filterAll: 'VŠE',
+      noResults: 'Žádné výsledky.',
+      diagramsTitle: 'Diagramy šifer',
+    },
     backBtn: '← ZPĚT',
   },
 
@@ -392,6 +401,7 @@ export const translations = {
       ecc: 'ECC',
       kyber: 'ML-KEM',
       otp: 'OTP',
+      glossary: 'GLOSSARY',
       langToggle: 'CS',
     },
     landing: {
@@ -757,6 +767,14 @@ export const translations = {
           'Type "help" for available commands.',
         ],
       },
+    },
+    glossary: {
+      pageTitle: 'Glossary',
+      subtitle: 'Explanatory dictionary of cryptographic terms and visual cipher diagrams',
+      search: 'Search term...',
+      filterAll: 'ALL',
+      noResults: 'No results.',
+      diagramsTitle: 'Cipher Diagrams',
     },
     backBtn: '← BACK',
   },
