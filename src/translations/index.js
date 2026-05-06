@@ -7,6 +7,7 @@ export const translations = {
       ecc: 'ECC',
       kyber: 'ML-KEM',
       otp: 'OTP',
+      qkd: 'QKD',
       glossary: 'POJMY',
       langToggle: 'EN',
     },
@@ -45,6 +46,13 @@ export const translations = {
           desc: 'Jediná šifra s matematicky dokazenou dokonalou bezpečností. Proč se nepoužívá?',
           status: 'DOKONALÁ BEZPEČNOST',
           year: '1917',
+        },
+        qkd: {
+          label: 'KVANTOVÁ FYZIKA',
+          name: 'BB84 — Kvantový kanál',
+          desc: 'Distribuce klíče pomocí fotonů. Odposlech je fyzikálně detekovatelný. Interaktivní simulace.',
+          status: 'FYZIKÁLNĚ BEZPEČNÁ',
+          year: '1984',
         },
       }
     },
@@ -391,6 +399,10 @@ export const translations = {
       noResults: 'Žádné výsledky.',
       diagramsTitle: 'Diagramy šifer',
     },
+    // QKD page
+    qkd: {
+      pageTitle: 'BB84 — Kvantová distribuce klíče',
+    },
     backBtn: '← ZPĚT',
   },
 
@@ -401,6 +413,7 @@ export const translations = {
       ecc: 'ECC',
       kyber: 'ML-KEM',
       otp: 'OTP',
+      qkd: 'QKD',
       glossary: 'GLOSSARY',
       langToggle: 'CS',
     },
@@ -438,6 +451,13 @@ export const translations = {
           desc: 'The only cipher with mathematically proven perfect secrecy. Why is it not used in practice?',
           status: 'PERFECT SECRECY',
           year: '1917',
+        },
+        qkd: {
+          label: 'QUANTUM PHYSICS',
+          name: 'BB84 — Quantum Channel',
+          desc: 'Key distribution via photons. Eavesdropping is physically detectable. Interactive simulation.',
+          status: 'PHYSICALLY SECURE',
+          year: '1984',
         },
       },
       scroll: 'SCROLL FOR MORE',
@@ -775,6 +795,10 @@ export const translations = {
       filterAll: 'ALL',
       noResults: 'No results.',
       diagramsTitle: 'Cipher Diagrams',
+    },
+    // QKD page
+    qkd: {
+      pageTitle: 'BB84 — Quantum Key Distribution',
     },
     backBtn: '← BACK',
   },

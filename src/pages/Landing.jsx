@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../contexts/LanguageContext'
 import { useTranslation } from '../translations'
-import { KeyIcon, LightningIcon, DiamondIcon, LockIcon } from '../components/Icons'
+import { KeyIcon, LightningIcon, DiamondIcon, LockIcon, AtomIcon } from '../components/Icons'
 
 function TypingText({ text, delay = 0 }) {
   const [displayed, setDisplayed] = useState('')
@@ -56,25 +56,33 @@ export default function Landing() {
       key: 'ecc',
       to: '/ecc',
       data: lt.cards.ecc,
-      statusColor: '#00ff41',
+      statusColor: '#e8e8e8',
       icon: <LightningIcon size="1.1em" />,
-      border: '#00ff41',
+      border: '#e8e8e8',
     },
     {
       key: 'kyber',
       to: '/kyber',
       data: lt.cards.kyber,
-      statusColor: '#00ff41',
+      statusColor: '#e8e8e8',
       icon: <DiamondIcon size="1.1em" />,
-      border: '#00ff41',
+      border: '#e8e8e8',
     },
     {
       key: 'otp',
       to: '/otp',
       data: lt.cards.otp,
-      statusColor: '#00ff41',
+      statusColor: '#e8e8e8',
       icon: <LockIcon size="1.1em" />,
-      border: '#00ff41',
+      border: '#e8e8e8',
+    },
+    {
+      key: 'qkd',
+      to: '/qkd',
+      data: lt.cards.qkd,
+      statusColor: '#44aaff',
+      icon: <AtomIcon size="1.1em" />,
+      border: '#44aaff',
     },
   ]
 
@@ -83,24 +91,24 @@ export default function Landing() {
       {/* Hero section */}
       <section className="relative flex-1 flex flex-col items-center justify-center text-center px-4 pt-20 pb-12" style={{ position: 'relative', zIndex: 1 }}>
         {/* Top label */}
-        <div className="mb-6 text-xs tracking-widest" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="mb-6 text-xs tracking-widest" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           <TypingText text={lt.subtitle} delay={200} />
         </div>
 
         {/* Main title */}
         <h1
           className="text-7xl md:text-9xl font-bold mb-4 glow"
-          style={{ fontFamily: 'VT323, monospace', color: '#00ff41', lineHeight: 1 }}
+          style={{ fontFamily: 'VT323, monospace', color: '#e8e8e8', lineHeight: 1 }}
         >
           <TypingText text={lt.title} delay={600} />
-          <span style={{ color: '#00aa2b' }}>
+          <span style={{ color: '#808080' }}>
             <TypingText text={lt.titleAccent} delay={1000} />
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="max-w-2xl text-sm leading-relaxed mb-10 mt-4"
-           style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.8' }}>
+           style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.8' }}>
           {lt.description}
         </p>
 
@@ -109,15 +117,15 @@ export default function Landing() {
           to="/caesar"
           className="inline-block px-8 py-3 text-sm border-2 transition-all duration-300 mb-16"
           style={{
-            color: '#00ff41',
-            borderColor: '#00ff41',
+            color: '#e8e8e8',
+            borderColor: '#e8e8e8',
             fontFamily: 'Share Tech Mono, monospace',
             letterSpacing: '0.15em',
             textDecoration: 'none',
           }}
           onMouseEnter={e => {
-            e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)'
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(0,255,65,0.4)'
+            e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)'
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(220,220,220,0.4)'
           }}
           onMouseLeave={e => {
             e.currentTarget.style.backgroundColor = 'transparent'
@@ -128,31 +136,31 @@ export default function Landing() {
         </Link>
 
         {/* Cards */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full transition-all duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl w-full transition-all duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {cards.map(({ key, to, data, statusColor, icon, border }) => (
             <Link
               key={key}
               to={to}
               className="block border text-left p-6 transition-all duration-300 group"
               style={{
-                borderColor: '#1a3a1a',
-                backgroundColor: 'rgba(0,20,5,0.75)',
+                borderColor: '#2a2a2a',
+                backgroundColor: 'rgba(8,8,8,0.75)',
                 textDecoration: 'none',
                 backdropFilter: 'blur(2px)',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = border
-                e.currentTarget.style.backgroundColor = 'rgba(0,40,10,0.9)'
-                e.currentTarget.style.boxShadow = `0 0 20px rgba(0,255,65,0.15), inset 0 0 20px rgba(0,255,65,0.05)`
+                e.currentTarget.style.backgroundColor = 'rgba(18,18,18,0.9)'
+                e.currentTarget.style.boxShadow = `0 0 20px rgba(220,220,220,0.15), inset 0 0 20px rgba(220,220,220,0.05)`
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.borderColor = '#1a3a1a'
-                e.currentTarget.style.backgroundColor = 'rgba(0,20,5,0.75)'
+                e.currentTarget.style.borderColor = '#2a2a2a'
+                e.currentTarget.style.backgroundColor = 'rgba(8,8,8,0.75)'
                 e.currentTarget.style.boxShadow = 'none'
               }}
             >
               <div className="flex items-start justify-between mb-4">
-                <span className="text-xs tracking-widest" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+                <span className="text-xs tracking-widest" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
                   {data.label}
                 </span>
                 <span
@@ -163,15 +171,15 @@ export default function Landing() {
                 </span>
               </div>
 
-              <h2 className="text-2xl mb-3" style={{ color: '#00ff41', fontFamily: 'VT323, monospace' }}>
+              <h2 className="text-2xl mb-3" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace' }}>
                 {icon} {data.name}
               </h2>
 
-              <p className="text-sm mb-4" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
+              <p className="text-sm mb-4" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
                 {data.desc}
               </p>
 
-              <div className="flex items-center justify-between text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+              <div className="flex items-center justify-between text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
                 <span>ROK: {data.year}</span>
                 <span style={{ color: statusColor }}>VSTOUPIT →</span>
               </div>
@@ -180,13 +188,13 @@ export default function Landing() {
         </div>
 
         {/* Scroll hint */}
-        <div className="mt-12 text-xs animate-bounce" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="mt-12 text-xs animate-bounce" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           {lt.scroll}
         </div>
       </section>
 
       {/* Bottom info bar */}
-      <footer className="border-t py-3 px-4 text-center text-xs" style={{ position: 'relative', zIndex: 1, borderColor: '#1a3a1a', color: '#003b0f', fontFamily: 'Share Tech Mono, monospace' }}>
+      <footer className="border-t py-3 px-4 text-center text-xs" style={{ position: 'relative', zIndex: 1, borderColor: '#2a2a2a', color: '#111111', fontFamily: 'Share Tech Mono, monospace' }}>
         KryptoLab v2.0.26 | Vzdělávací projekt | React + Tailwind CSS + Cloudflare Pages
       </footer>
     </div>

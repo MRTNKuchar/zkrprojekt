@@ -179,12 +179,12 @@ export default function KyberTerminal() {
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-4" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #00ff4166' }}>
+      <h2 className="text-2xl mb-4" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #e8e8e866' }}>
         {tt.title}
       </h2>
 
-      <div className="border p-3 mb-4 text-xs" style={{ borderColor: '#1a3a1a', color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
-        <div style={{ color: '#ffaa44' }}>SCÉNÁŘ:</div>
+      <div className="border p-3 mb-4 text-xs" style={{ borderColor: '#2a2a2a', color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div style={{ color: '#aaaaaa' }}>SCÉNÁŘ:</div>
         <div>Analýza hrozby kvantových počítačů pro moderní kryptografii a demonstrace post-kvantových řešení.</div>
       </div>
 
@@ -192,16 +192,16 @@ export default function KyberTerminal() {
         welcomeLines={tt.welcomeMsg}
         commandHandlers={commandHandlers}
         prompt="researcher@kryptolab:~$"
-        accentColor="#00ff41"
+        accentColor="#e8e8e8"
       />
 
-      <div className="mt-4 border p-3 text-xs" style={{ borderColor: '#1a3a1a', color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-4 border p-3 text-xs" style={{ borderColor: '#2a2a2a', color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {tt.hint} &nbsp;
-        <span style={{ color: '#00cc35' }}>show shor</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00cc35' }}>show lwe</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00cc35' }}>compare</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00cc35' }}>timeline</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00cc35' }}>reset</span>
+        <span style={{ color: '#b0b0b0' }}>show shor</span> &nbsp;|&nbsp;
+        <span style={{ color: '#b0b0b0' }}>show lwe</span> &nbsp;|&nbsp;
+        <span style={{ color: '#b0b0b0' }}>compare</span> &nbsp;|&nbsp;
+        <span style={{ color: '#b0b0b0' }}>timeline</span> &nbsp;|&nbsp;
+        <span style={{ color: '#b0b0b0' }}>reset</span>
       </div>
     </div>
   )

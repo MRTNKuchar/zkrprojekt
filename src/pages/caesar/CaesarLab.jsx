@@ -126,27 +126,27 @@ export default function CaesarLab() {
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-6 glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
+      <h2 className="text-2xl mb-6 glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
         {cl.title}
       </h2>
 
       {/* Code section */}
       <div className="mb-8">
-        <h3 className="text-sm mb-3" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-3" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {cl.codeTitle}
         </h3>
         <CodeBlock code={CAESAR_CODE} title="caesar.py" />
       </div>
 
       {/* Playground */}
-      <div className="border p-4 mb-6" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-        <h3 className="text-sm mb-4" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="border p-4 mb-6" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+        <h3 className="text-sm mb-4" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {cl.playgroundTitle}
         </h3>
 
         {/* Input */}
         <div className="mb-4">
-          <label className="block text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+          <label className="block text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
             {cl.inputLabel}:
           </label>
           <textarea
@@ -156,21 +156,21 @@ export default function CaesarLab() {
             className="w-full border p-2 text-sm resize-none outline-none"
             style={{
               backgroundColor: '#020a02',
-              borderColor: '#1a3a1a',
-              color: '#00ff41',
+              borderColor: '#2a2a2a',
+              color: '#e8e8e8',
               fontFamily: 'Share Tech Mono, monospace',
-              caretColor: '#00ff41',
+              caretColor: '#e8e8e8',
             }}
             placeholder={cl.inputPlaceholder}
-            onFocus={e => e.target.style.borderColor = '#00ff41'}
-            onBlur={e => e.target.style.borderColor = '#1a3a1a'}
+            onFocus={e => e.target.style.borderColor = '#e8e8e8'}
+            onBlur={e => e.target.style.borderColor = '#2a2a2a'}
           />
         </div>
 
         {/* Shift slider */}
         <div className="mb-4">
-          <label className="block text-xs mb-2" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
-            {cl.shiftLabel}: <span style={{ color: '#00ff41' }}>{shift}</span>
+          <label className="block text-xs mb-2" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
+            {cl.shiftLabel}: <span style={{ color: '#e8e8e8' }}>{shift}</span>
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -180,7 +180,7 @@ export default function CaesarLab() {
               value={shift}
               onChange={e => setShift(Number(e.target.value))}
               className="flex-1"
-              style={{ accentColor: '#00ff41' }}
+              style={{ accentColor: '#e8e8e8' }}
             />
             <input
               type="number"
@@ -191,8 +191,8 @@ export default function CaesarLab() {
               className="w-16 border p-1 text-sm text-center outline-none"
               style={{
                 backgroundColor: '#020a02',
-                borderColor: '#1a3a1a',
-                color: '#00ff41',
+                borderColor: '#2a2a2a',
+                color: '#e8e8e8',
                 fontFamily: 'Share Tech Mono, monospace',
               }}
             />
@@ -206,9 +206,9 @@ export default function CaesarLab() {
             className="px-4 py-2 text-sm border transition-all"
             style={{
               fontFamily: 'Share Tech Mono, monospace',
-              color: mode === 'encrypt' ? '#0a0a0a' : '#00ff41',
-              backgroundColor: mode === 'encrypt' ? '#00ff41' : 'transparent',
-              borderColor: '#00ff41',
+              color: mode === 'encrypt' ? '#0a0a0a' : '#e8e8e8',
+              backgroundColor: mode === 'encrypt' ? '#e8e8e8' : 'transparent',
+              borderColor: '#e8e8e8',
               cursor: 'pointer',
             }}
           >
@@ -219,9 +219,9 @@ export default function CaesarLab() {
             className="px-4 py-2 text-sm border transition-all"
             style={{
               fontFamily: 'Share Tech Mono, monospace',
-              color: mode === 'decrypt' ? '#0a0a0a' : '#00ff41',
-              backgroundColor: mode === 'decrypt' ? '#00ff41' : 'transparent',
-              borderColor: '#00ff41',
+              color: mode === 'decrypt' ? '#0a0a0a' : '#e8e8e8',
+              backgroundColor: mode === 'decrypt' ? '#e8e8e8' : 'transparent',
+              borderColor: '#e8e8e8',
               cursor: 'pointer',
             }}
           >
@@ -243,11 +243,11 @@ export default function CaesarLab() {
         </div>
 
         {/* Result */}
-        <div className="border p-3 mb-4" style={{ borderColor: '#1a3a1a' }}>
-          <div className="text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="border p-3 mb-4" style={{ borderColor: '#2a2a2a' }}>
+          <div className="text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
             {mode === 'encrypt' ? cl.resultEncrypt : cl.resultDecrypt} (klíč: {shift}):
           </div>
-          <div className="text-sm break-all" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
+          <div className="text-sm break-all" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
             {result || '—'}
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function CaesarLab() {
                  style={{ color: '#ff4444', fontFamily: 'Share Tech Mono, monospace' }}>
               ⚠ {cl.wrongKeyWarn} (klíč: {wrongShift})
             </div>
-            <div className="text-sm break-all" style={{ color: '#ff6666', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
+            <div className="text-sm break-all" style={{ color: '#bbbbbb', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
               {wrongDecrypted || '—'}
             </div>
           </div>
@@ -267,8 +267,8 @@ export default function CaesarLab() {
       </div>
 
       {/* Frequency chart */}
-      <div className="border p-4" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-        <h3 className="text-sm mb-3" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="border p-4" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+        <h3 className="text-sm mb-3" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ Frekvenční analýza — {mode === 'encrypt' ? 'zašifrovaný' : 'vstupní'} text
         </h3>
         <FrequencyChart text={charForChart} />

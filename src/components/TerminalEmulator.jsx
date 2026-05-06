@@ -70,34 +70,34 @@ export default function TerminalEmulator({ welcomeLines = [], commandHandlers = 
   }
 
   const lineColors = {
-    system: '#00aa2b',
-    command: '#00ff41',
-    output: '#00cc35',
-    success: '#00ff41',
+    system: '#808080',
+    command: '#e8e8e8',
+    output: '#b0b0b0',
+    success: '#e8e8e8',
     error: '#ff4444',
-    warning: '#ffaa00',
+    warning: '#aaaaaa',
     highlight: '#aaffaa',
-    dim: '#005515',
-    info: '#44aaff',
+    dim: '#505050',
+    info: '#cccccc',
   }
 
   return (
     <div
       className="border h-96 flex flex-col cursor-text"
-      style={{ borderColor: '#1a3a1a', backgroundColor: '#020a02' }}
+      style={{ borderColor: '#2a2a2a', backgroundColor: '#020a02' }}
       onClick={() => inputRef.current?.focus()}
     >
       {/* Terminal header */}
       <div className="flex items-center gap-2 px-4 py-2 border-b"
-           style={{ borderColor: '#1a3a1a', backgroundColor: 'rgba(0,59,15,0.3)' }}>
+           style={{ borderColor: '#2a2a2a', backgroundColor: 'rgba(15,15,15,0.3)' }}>
         <span style={{ color: '#ff4444' }}>●</span>
-        <span style={{ color: '#ffaa00' }}>●</span>
-        <span style={{ color: '#00ff41' }}>●</span>
-        <span className="ml-2 text-xs" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <span style={{ color: '#aaaaaa' }}>●</span>
+        <span style={{ color: '#e8e8e8' }}>●</span>
+        <span className="ml-2 text-xs" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           bash — kryptolab terminal
         </span>
         {isRunning && (
-          <span className="ml-auto text-xs animate-pulse" style={{ color: '#ffaa00' }}>
+          <span className="ml-auto text-xs animate-pulse" style={{ color: '#aaaaaa' }}>
             ● SPUŠTĚNO
           </span>
         )}
@@ -110,7 +110,7 @@ export default function TerminalEmulator({ welcomeLines = [], commandHandlers = 
           <div
             key={line.id || i}
             className="terminal-line leading-5"
-            style={{ color: lineColors[line.type] || '#00cc35', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
+            style={{ color: lineColors[line.type] || '#b0b0b0', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}
           >
             {line.text}
           </div>
@@ -119,9 +119,9 @@ export default function TerminalEmulator({ welcomeLines = [], commandHandlers = 
       </div>
 
       {/* Input */}
-      <div className="border-t px-3 py-2" style={{ borderColor: '#1a3a1a' }}>
+      <div className="border-t px-3 py-2" style={{ borderColor: '#2a2a2a' }}>
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
-          <span className="text-xs shrink-0" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+          <span className="text-xs shrink-0" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
             {prompt}
           </span>
           <input
@@ -134,9 +134,9 @@ export default function TerminalEmulator({ welcomeLines = [], commandHandlers = 
             spellCheck={false}
             className="flex-1 bg-transparent outline-none text-sm"
             style={{
-              color: '#00ff41',
+              color: '#e8e8e8',
               fontFamily: 'Share Tech Mono, monospace',
-              caretColor: '#00ff41',
+              caretColor: '#e8e8e8',
             }}
           />
           {!isRunning && <span className="cursor" />}

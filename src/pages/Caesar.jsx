@@ -36,15 +36,15 @@ export default function Caesar() {
         <div className="flex items-start justify-between gap-4 mb-6 flex-wrap">
           <div>
             <Link to="/" className="text-xs mb-2 inline-block transition-colors"
-                  style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#00ff41'}
-                  onMouseLeave={e => e.currentTarget.style.color = '#00aa2b'}>
+                  style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#e8e8e8'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#808080'}>
               {t.backBtn}
             </Link>
-            <h1 className="text-4xl md:text-5xl glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace' }}>
+            <h1 className="text-4xl md:text-5xl glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace' }}>
               {t.caesar.pageTitle}
             </h1>
-            <div className="text-xs mt-1" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div className="text-xs mt-1" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
               /caesar — šifra posunu
             </div>
           </div>

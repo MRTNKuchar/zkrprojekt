@@ -41,13 +41,13 @@ export default function MatrixBackground() {
         // Head character — bright white-green glow
         const headY = Math.floor(drops[i]) * FONT_SIZE
         ctx.shadowBlur = 8
-        ctx.shadowColor = '#00ff41'
-        ctx.fillStyle = `rgba(180, 255, 200, ${opacities[i]})`
+        ctx.shadowColor = '#e8e8e8'
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacities[i]})`
         ctx.fillText(CHARS[charIdx[i]], x, headY)
 
         // Body character just below head — green
         ctx.shadowBlur = 4
-        ctx.shadowColor = '#00ff41'
+        ctx.shadowColor = '#e8e8e8'
         ctx.fillStyle = `rgba(0, 255, 65, ${opacities[i] * 0.7})`
         const c2 = CHARS[Math.floor(Math.random() * CHARS.length)]
         ctx.fillText(c2, x, headY + FONT_SIZE)

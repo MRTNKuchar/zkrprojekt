@@ -9,17 +9,17 @@ export function CaesarDiagram({ lang }) {
     <div>
       {/* Shift control */}
       <div className="flex items-center gap-3 mb-4" style={{ fontFamily: 'Share Tech Mono, monospace' }}>
-        <span style={{ color: '#00aa2b', fontSize: '0.75rem' }}>
+        <span style={{ color: '#808080', fontSize: '0.75rem' }}>
           {lang === 'cs' ? 'POSUN' : 'SHIFT'} =
         </span>
         <button
           onClick={() => setShift(s => s <= 1 ? 25 : s - 1)}
-          style={{ color: '#00ff41', background: 'none', border: '1px solid #1a3a1a', padding: '1px 8px', cursor: 'pointer', fontFamily: 'inherit' }}
+          style={{ color: '#e8e8e8', background: 'none', border: '1px solid #2a2a2a', padding: '1px 8px', cursor: 'pointer', fontFamily: 'inherit' }}
         >−</button>
-        <span style={{ color: '#00ff41', minWidth: 24, textAlign: 'center' }}>{shift}</span>
+        <span style={{ color: '#e8e8e8', minWidth: 24, textAlign: 'center' }}>{shift}</span>
         <button
           onClick={() => setShift(s => s >= 25 ? 1 : s + 1)}
-          style={{ color: '#00ff41', background: 'none', border: '1px solid #1a3a1a', padding: '1px 8px', cursor: 'pointer', fontFamily: 'inherit' }}
+          style={{ color: '#e8e8e8', background: 'none', border: '1px solid #2a2a2a', padding: '1px 8px', cursor: 'pointer', fontFamily: 'inherit' }}
         >+</button>
       </div>
 
@@ -31,9 +31,9 @@ export function CaesarDiagram({ lang }) {
             {alpha.slice(offset, offset + 13).map((ch, i) => (
               <div key={ch} style={{
                 width: 22, textAlign: 'center', fontSize: '0.7rem',
-                color: '#00ff41', fontFamily: 'Share Tech Mono, monospace',
-                borderTop: '1px solid #1a3a1a', borderLeft: i === 0 ? '1px solid #1a3a1a' : 'none',
-                borderRight: '1px solid #1a3a1a', padding: '2px 0',
+                color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace',
+                borderTop: '1px solid #2a2a2a', borderLeft: i === 0 ? '1px solid #2a2a2a' : 'none',
+                borderRight: '1px solid #2a2a2a', padding: '2px 0',
               }}>{ch}</div>
             ))}
           </div>
@@ -42,7 +42,7 @@ export function CaesarDiagram({ lang }) {
             {alpha.slice(offset, offset + 13).map((ch, i) => (
               <div key={ch} style={{
                 width: 22, textAlign: 'center', fontSize: '0.6rem',
-                color: '#005515', fontFamily: 'Share Tech Mono, monospace',
+                color: '#505050', fontFamily: 'Share Tech Mono, monospace',
               }}>↓</div>
             ))}
           </div>
@@ -53,9 +53,9 @@ export function CaesarDiagram({ lang }) {
               return (
                 <div key={ch} style={{
                   width: 22, textAlign: 'center', fontSize: '0.7rem',
-                  color: '#ffaa44', fontFamily: 'Share Tech Mono, monospace',
-                  borderBottom: '1px solid #1a3a1a', borderLeft: i === 0 ? '1px solid #1a3a1a' : 'none',
-                  borderRight: '1px solid #1a3a1a', padding: '2px 0',
+                  color: '#aaaaaa', fontFamily: 'Share Tech Mono, monospace',
+                  borderBottom: '1px solid #2a2a2a', borderLeft: i === 0 ? '1px solid #2a2a2a' : 'none',
+                  borderRight: '1px solid #2a2a2a', padding: '2px 0',
                 }}>{alpha[idx]}</div>
               )
             })}
@@ -63,7 +63,7 @@ export function CaesarDiagram({ lang }) {
         </div>
       ))}
 
-      <div className="mt-3 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-3 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {lang === 'cs'
           ? `E(x) = (x + ${shift}) mod 26 · D(x) = (x − ${shift} + 26) mod 26`
           : `E(x) = (x + ${shift}) mod 26 · D(x) = (x − ${shift} + 26) mod 26`}
@@ -84,35 +84,35 @@ export function EccDiagram({ lang }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Curve SVG */}
         <div>
-          <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+          <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
             y²=x³−3x+3 (mod 97)
           </div>
           <svg viewBox="0 0 300 180" style={{ width: '100%', maxWidth: 300, display: 'block' }}>
             {/* Grid lines */}
             <line x1="15" y1="90" x2="290" y2="90" stroke="#0a1a0a" strokeWidth="1" />
             <line x1="128" y1="5" x2="128" y2="175" stroke="#0a1a0a" strokeWidth="1" />
-            <text x="285" y="87" fontSize="8" fill="#005515" fontFamily="Share Tech Mono, monospace">x</text>
-            <text x="131" y="12" fontSize="8" fill="#005515" fontFamily="Share Tech Mono, monospace">y</text>
+            <text x="285" y="87" fontSize="8" fill="#505050" fontFamily="Share Tech Mono, monospace">x</text>
+            <text x="131" y="12" fontSize="8" fill="#505050" fontFamily="Share Tech Mono, monospace">y</text>
 
             {/* Curve */}
-            <polyline points={UPPER} fill="none" stroke="#00aa2b" strokeWidth="1.8"
+            <polyline points={UPPER} fill="none" stroke="#808080" strokeWidth="1.8"
               strokeLinecap="round" strokeLinejoin="round" />
-            <polyline points={LOWER} fill="none" stroke="#00aa2b" strokeWidth="1.8"
+            <polyline points={LOWER} fill="none" stroke="#808080" strokeWidth="1.8"
               strokeLinecap="round" strokeLinejoin="round" />
 
             {/* Generator G = (13,7) scaled: x=13→ svgX=15+(13+2)*45=690... too far off range */}
             {/* Use visual G near (1,1): svgX=172, svgY=75 */}
-            <circle cx="172" cy="75" r="4" fill="#00ff41" />
-            <text x="176" y="72" fontSize="8" fill="#00ff41" fontFamily="Share Tech Mono, monospace">G</text>
+            <circle cx="172" cy="75" r="4" fill="#e8e8e8" />
+            <text x="176" y="72" fontSize="8" fill="#e8e8e8" fontFamily="Share Tech Mono, monospace">G</text>
 
             {/* 2G visual approx at (-0.5, 2.09) → svgX=105, svgY=59 */}
-            <circle cx="105" cy="59" r="4" fill="#ffaa44" />
-            <text x="90" y="55" fontSize="8" fill="#ffaa44" fontFamily="Share Tech Mono, monospace">2G</text>
+            <circle cx="105" cy="59" r="4" fill="#aaaaaa" />
+            <text x="90" y="55" fontSize="8" fill="#aaaaaa" fontFamily="Share Tech Mono, monospace">2G</text>
 
             {/* Geometric line through G tangent → hits curve at -2G, reflects to 2G */}
-            <line x1="60" y1="62" x2="260" y2="84" stroke="#1a3a1a" strokeWidth="0.8" strokeDasharray="4,3" />
+            <line x1="60" y1="62" x2="260" y2="84" stroke="#2a2a2a" strokeWidth="0.8" strokeDasharray="4,3" />
             {/* Reflection vertical */}
-            <line x1="105" y1="59" x2="105" y2="121" stroke="#ffaa44" strokeWidth="0.6" strokeDasharray="2,2" />
+            <line x1="105" y1="59" x2="105" y2="121" stroke="#aaaaaa" strokeWidth="0.6" strokeDasharray="2,2" />
           </svg>
         </div>
 
@@ -120,26 +120,26 @@ export function EccDiagram({ lang }) {
         <div style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: '0.7rem' }}>
           <div className="mb-3">
             <div className="grid grid-cols-2 gap-1 mb-2">
-              <div style={{ color: '#44aaff' }}>ALICE</div>
-              <div style={{ color: '#ffaa44', textAlign: 'right' }}>BOB</div>
+              <div style={{ color: '#cccccc' }}>ALICE</div>
+              <div style={{ color: '#aaaaaa', textAlign: 'right' }}>BOB</div>
             </div>
             <div className="grid grid-cols-2 gap-1 mb-1">
               <div style={{ color: '#ff4444' }}>privA → tajné</div>
               <div style={{ color: '#ff4444', textAlign: 'right' }}>tajné ← privB</div>
             </div>
             <div className="grid grid-cols-2 gap-1 mb-1">
-              <div style={{ color: '#44aaff' }}>pubA = privA·G</div>
-              <div style={{ color: '#ffaa44', textAlign: 'right' }}>pubB = privB·G</div>
+              <div style={{ color: '#cccccc' }}>pubA = privA·G</div>
+              <div style={{ color: '#aaaaaa', textAlign: 'right' }}>pubB = privB·G</div>
             </div>
             {/* Exchange arrows */}
-            <div className="border-t border-b py-1 my-2 text-center" style={{ borderColor: '#1a3a1a', color: '#005515' }}>
+            <div className="border-t border-b py-1 my-2 text-center" style={{ borderColor: '#2a2a2a', color: '#505050' }}>
               <div>pubA ——————→</div>
               <div>←—————— pubB</div>
             </div>
             {/* Shared secret */}
-            <div style={{ color: '#44aaff' }}>privA · pubB</div>
-            <div style={{ color: '#ffaa44', textAlign: 'right' }}>privB · pubA</div>
-            <div className="mt-2 text-center border p-1" style={{ borderColor: '#00ff41', color: '#00ff41' }}>
+            <div style={{ color: '#cccccc' }}>privA · pubB</div>
+            <div style={{ color: '#aaaaaa', textAlign: 'right' }}>privB · pubA</div>
+            <div className="mt-2 text-center border p-1" style={{ borderColor: '#e8e8e8', color: '#e8e8e8' }}>
               = privA·privB·G
             </div>
           </div>
@@ -177,11 +177,11 @@ export function LatticeDiagram({ lang }) {
 
         {/* Lattice points */}
         {pts.map((p, i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="3" fill="#00aa2b" />
+          <circle key={i} cx={p.x} cy={p.y} r="3" fill="#808080" />
         ))}
 
         {/* Nearest lattice point (highlighted) */}
-        <circle cx={nearest.x} cy={nearest.y} r="4" fill="none" stroke="#00ff41" strokeWidth="1.5" />
+        <circle cx={nearest.x} cy={nearest.y} r="4" fill="none" stroke="#e8e8e8" strokeWidth="1.5" />
 
         {/* Target point (noisy) */}
         <circle cx={target.x} cy={target.y} r="4" fill="#ff4444" />
@@ -192,19 +192,19 @@ export function LatticeDiagram({ lang }) {
 
         {/* Arrow from target to nearest */}
         <line x1={target.x} y1={target.y} x2={nearest.x + 4} y2={nearest.y - 4}
-          stroke="#ffaa44" strokeWidth="1" strokeDasharray="3,2" />
-        <text x={nearest.x - 55} y={nearest.y + 16} fontSize="7" fill="#ffaa44"
+          stroke="#aaaaaa" strokeWidth="1" strokeDasharray="3,2" />
+        <text x={nearest.x - 55} y={nearest.y + 16} fontSize="7" fill="#aaaaaa"
           fontFamily="Share Tech Mono, monospace">
           {lang === 'cs' ? 'nejbližší bod?' : 'closest point?'}
         </text>
 
         {/* Label: "šum e" */}
-        <text x="185" y="108" fontSize="7" fill="#005515" fontFamily="Share Tech Mono, monospace">
+        <text x="185" y="108" fontSize="7" fill="#505050" fontFamily="Share Tech Mono, monospace">
           {lang === 'cs' ? 'šum e' : 'noise e'}
         </text>
       </svg>
 
-      <div className="mt-2 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-2 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {lang === 'cs'
           ? 'CVP: dáno b=As+e, najdi s — výpočetně neřešitelné pro velké dimenze'
           : 'CVP: given b=As+e, find s — computationally infeasible in high dimensions'}
@@ -222,17 +222,17 @@ BITS.ct = BITS.msg.map((b, i) => b ^ BITS.key[i])
 
 export function OtpDiagram({ lang }) {
   const rows = [
-    { label: lang === 'cs' ? 'Zpráva (M)' : 'Message (M)', bits: BITS.msg, color: '#00ff41' },
-    { label: lang === 'cs' ? 'Klíč (K)'   : 'Key (K)',     bits: BITS.key, color: '#ffaa44' },
-    { label: 'XOR ⊕',                                       bits: null,      color: '#005515' },
-    { label: lang === 'cs' ? 'Šifrogram (C)' : 'Ciphertext (C)', bits: BITS.ct, color: '#44aaff' },
+    { label: lang === 'cs' ? 'Zpráva (M)' : 'Message (M)', bits: BITS.msg, color: '#e8e8e8' },
+    { label: lang === 'cs' ? 'Klíč (K)'   : 'Key (K)',     bits: BITS.key, color: '#aaaaaa' },
+    { label: 'XOR ⊕',                                       bits: null,      color: '#505050' },
+    { label: lang === 'cs' ? 'Šifrogram (C)' : 'Ciphertext (C)', bits: BITS.ct, color: '#cccccc' },
   ]
 
   const Cell = ({ val, color }) => (
     <div style={{
       width: 28, textAlign: 'center', padding: '3px 0',
       fontSize: '0.75rem', color, fontFamily: 'Share Tech Mono, monospace',
-      border: '1px solid #1a3a1a', marginRight: -1,
+      border: '1px solid #2a2a2a', marginRight: -1,
     }}>{val}</div>
   )
 
@@ -254,15 +254,15 @@ export function OtpDiagram({ lang }) {
       ))}
 
       {/* Decrypt */}
-      <div className="mt-4 border-t pt-3" style={{ borderColor: '#1a3a1a' }}>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-4 border-t pt-3" style={{ borderColor: '#2a2a2a' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           {lang === 'cs' ? '── Dešifrování ──' : '── Decryption ──'}
         </div>
         {[
-          { label: lang === 'cs' ? 'Šifrogram (C)' : 'Ciphertext (C)', bits: BITS.ct,  color: '#44aaff' },
-          { label: lang === 'cs' ? 'Klíč (K)'      : 'Key (K)',        bits: BITS.key, color: '#ffaa44' },
-          { label: 'XOR ⊕',                                              bits: null,     color: '#005515' },
-          { label: lang === 'cs' ? 'Zpráva (M)' : 'Message (M)',       bits: BITS.msg, color: '#00ff41' },
+          { label: lang === 'cs' ? 'Šifrogram (C)' : 'Ciphertext (C)', bits: BITS.ct,  color: '#cccccc' },
+          { label: lang === 'cs' ? 'Klíč (K)'      : 'Key (K)',        bits: BITS.key, color: '#aaaaaa' },
+          { label: 'XOR ⊕',                                              bits: null,     color: '#505050' },
+          { label: lang === 'cs' ? 'Zpráva (M)' : 'Message (M)',       bits: BITS.msg, color: '#e8e8e8' },
         ].map((row, ri) => (
           <div key={ri} className="flex items-center gap-2 mb-0.5">
             <div style={{
@@ -279,7 +279,7 @@ export function OtpDiagram({ lang }) {
         ))}
       </div>
 
-      <div className="mt-3 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-3 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {lang === 'cs'
           ? 'C = M ⊕ K   ·   M = C ⊕ K   ·   klíč musí být náhodný a jednorázový'
           : 'C = M ⊕ K   ·   M = C ⊕ K   ·   key must be random and used only once'}

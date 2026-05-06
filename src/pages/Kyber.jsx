@@ -36,15 +36,15 @@ export default function Kyber() {
         <div className="flex items-start justify-between gap-4 mb-6 flex-wrap">
           <div>
             <Link to="/" className="text-xs mb-2 inline-block transition-colors"
-                  style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#00ff41'}
-                  onMouseLeave={e => e.currentTarget.style.color = '#00aa2b'}>
+                  style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#e8e8e8'}
+                  onMouseLeave={e => e.currentTarget.style.color = '#808080'}>
               {t.backBtn}
             </Link>
-            <h1 className="text-4xl md:text-5xl" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', textShadow: '0 0 16px #00ff4155' }}>
+            <h1 className="text-4xl md:text-5xl" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', textShadow: '0 0 16px rgba(220,220,220,0.33)' }}>
               {t.kyber.pageTitle}
             </h1>
-            <div className="text-xs mt-1" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div className="text-xs mt-1" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
               /kyber — post-kvantová kryptografie (ML-KEM / NIST FIPS 203)
             </div>
           </div>

@@ -163,7 +163,7 @@ export default function OtpLab() {
     setReuseResult({ ct1, ct2, xored, b1s, b2s })
   }
 
-  const btnStyle = (enabled, color = '#00ff41') => ({
+  const btnStyle = (enabled, color = '#e8e8e8') => ({
     fontFamily: 'Share Tech Mono, monospace',
     color: enabled ? color : '#333',
     borderColor: enabled ? color : '#333',
@@ -173,24 +173,24 @@ export default function OtpLab() {
 
   const inputStyle = {
     backgroundColor: '#020a05',
-    borderColor: '#1a3a1a',
-    color: '#00ff41',
+    borderColor: '#2a2a2a',
+    color: '#e8e8e8',
     fontFamily: 'Share Tech Mono, monospace',
-    caretColor: '#00ff41',
+    caretColor: '#e8e8e8',
   }
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-6" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #00ff4166' }}>
+      <h2 className="text-2xl mb-6" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #e8e8e866' }}>
         {ol.title}
       </h2>
 
       {/* Code — od nuly */}
       <div className="mb-4">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {ol.codeTitle} — od nuly, bez závislostí
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           python otp_scratch.py
         </div>
         <CodeBlock code={OTP_CODE_SCRATCH} title="otp_scratch.py" />
@@ -198,27 +198,27 @@ export default function OtpLab() {
 
       {/* Code — produkční */}
       <div className="mb-8">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ Produkční verze — Python secrets (stdlib)
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           python otp_prod.py
         </div>
         <CodeBlock code={OTP_CODE_PROD} title="otp_prod.py" />
       </div>
 
       {/* Interactive demo — encrypt/decrypt */}
-      <div className="border p-4 mb-6" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-        <h3 className="text-sm mb-1" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="border p-4 mb-6" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {ol.demoTitle}
         </h3>
-        <div className="text-xs mb-4" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-4" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           max {MAX_MSG_LEN} znaků &nbsp;|&nbsp; klíč = náhodné bajty (crypto.getRandomValues)
         </div>
 
         {/* Message input + generate key */}
         <div className="mb-4">
-          <label className="block text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+          <label className="block text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
             {ol.msgLabel}:
           </label>
           <div className="flex gap-3 flex-wrap items-center">
@@ -233,7 +233,7 @@ export default function OtpLab() {
               onClick={handleGenerate}
               className="px-4 py-2 text-sm border transition-all"
               style={btnStyle(true)}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)'}
+              onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)'}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
             >
               {ol.genBtn}
@@ -243,10 +243,10 @@ export default function OtpLab() {
 
         {/* Show key */}
         {key && (
-          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#1a3a1a', fontFamily: 'Share Tech Mono, monospace' }}>
-            <div style={{ color: '#ff6644', marginBottom: 2 }}>{ol.keyLabel}: <span style={{ color: '#5a2a2a' }}>(TAJNÉ!)</span></div>
+          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#2a2a2a', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div style={{ color: '#cccccc', marginBottom: 2 }}>{ol.keyLabel}: <span style={{ color: '#5a2a2a' }}>(TAJNÉ!)</span></div>
             <div style={{ color: '#ff9944', wordBreak: 'break-all' }}>{hexToDisplay(key)}</div>
-            <div className="mt-1" style={{ color: '#005515' }}>{key.length} {ol.bytesLabel}</div>
+            <div className="mt-1" style={{ color: '#505050' }}>{key.length} {ol.bytesLabel}</div>
           </div>
         )}
 
@@ -256,20 +256,20 @@ export default function OtpLab() {
             onClick={handleEncrypt}
             disabled={!key}
             className="px-4 py-2 text-sm border transition-all"
-            style={btnStyle(!!key, '#ffaa44')}
+            style={btnStyle(!!key, '#aaaaaa')}
             onMouseEnter={e => { if (key) e.currentTarget.style.backgroundColor = 'rgba(255,170,68,0.1)' }}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             {ol.encBtn}
           </button>
-          {!key && <span className="ml-3 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>↑ {ol.noKey}</span>}
+          {!key && <span className="ml-3 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>↑ {ol.noKey}</span>}
         </div>
 
         {cipherBytes && (
-          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#1a3a1a', fontFamily: 'Share Tech Mono, monospace' }}>
-            <div style={{ color: '#00aa2b', marginBottom: 4 }}>{ol.cipherLabel}:</div>
-            <div style={{ color: '#ffaa44', wordBreak: 'break-all' }}>{hexToDisplay(cipherBytes)}</div>
-            <div className="mt-2" style={{ color: '#005515' }}>{cipherBytes.length} {ol.bytesLabel} — {ol.cipherNote}</div>
+          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#2a2a2a', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div style={{ color: '#808080', marginBottom: 4 }}>{ol.cipherLabel}:</div>
+            <div style={{ color: '#aaaaaa', wordBreak: 'break-all' }}>{hexToDisplay(cipherBytes)}</div>
+            <div className="mt-2" style={{ color: '#505050' }}>{cipherBytes.length} {ol.bytesLabel} — {ol.cipherNote}</div>
           </div>
         )}
 
@@ -279,7 +279,7 @@ export default function OtpLab() {
             <button
               onClick={handleDecrypt}
               className="px-4 py-2 text-sm border transition-all"
-              style={btnStyle(true, '#44aaff')}
+              style={btnStyle(true, '#cccccc')}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(68,170,255,0.1)'}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
             >
@@ -290,14 +290,14 @@ export default function OtpLab() {
 
         {decrypted !== null && (
           <div className="border p-3 fade-in text-xs" style={{
-            borderColor: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#00ff41' : '#ff4444',
+            borderColor: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#e8e8e8' : '#ff4444',
             fontFamily: 'Share Tech Mono, monospace',
           }}>
-            <div style={{ color: '#00aa2b', marginBottom: 4 }}>{ol.decResult}:</div>
-            <div style={{ color: '#00ff41', fontSize: '1rem', fontFamily: 'VT323, monospace' }}>
+            <div style={{ color: '#808080', marginBottom: 4 }}>{ol.decResult}:</div>
+            <div style={{ color: '#e8e8e8', fontSize: '1rem', fontFamily: 'VT323, monospace' }}>
               "{decrypted}"
             </div>
-            <div className="mt-2" style={{ color: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#00ff41' : '#ff4444' }}>
+            <div className="mt-2" style={{ color: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#e8e8e8' : '#ff4444' }}>
               {ol.match}: {decrypted === msg.slice(0, MAX_MSG_LEN) ? 'ANO ✓' : 'NE ✗'}
             </div>
           </div>
@@ -315,7 +315,7 @@ export default function OtpLab() {
 
         <div className="flex gap-3 flex-wrap items-end mb-4">
           <div>
-            <label className="block text-xs mb-1" style={{ color: '#ff6644', fontFamily: 'Share Tech Mono, monospace' }}>
+            <label className="block text-xs mb-1" style={{ color: '#cccccc', fontFamily: 'Share Tech Mono, monospace' }}>
               {ol.msg1Label}:
             </label>
             <input
@@ -326,7 +326,7 @@ export default function OtpLab() {
             />
           </div>
           <div>
-            <label className="block text-xs mb-1" style={{ color: '#ff6644', fontFamily: 'Share Tech Mono, monospace' }}>
+            <label className="block text-xs mb-1" style={{ color: '#cccccc', fontFamily: 'Share Tech Mono, monospace' }}>
               {ol.msg2Label}:
             </label>
             <input
@@ -350,20 +350,20 @@ export default function OtpLab() {
         {reuseResult && (
           <div className="border p-3 text-xs fade-in space-y-2" style={{ borderColor: '#2a1a1a', fontFamily: 'Share Tech Mono, monospace' }}>
             <div>
-              <span style={{ color: '#ff6644' }}>c1 = m1 ⊕ k: </span>
-              <span style={{ color: '#ffaa44' }}>{hexToDisplay(reuseResult.ct1)}</span>
+              <span style={{ color: '#cccccc' }}>c1 = m1 ⊕ k: </span>
+              <span style={{ color: '#aaaaaa' }}>{hexToDisplay(reuseResult.ct1)}</span>
             </div>
             <div>
-              <span style={{ color: '#ff6644' }}>c2 = m2 ⊕ k: </span>
-              <span style={{ color: '#ffaa44' }}>{hexToDisplay(reuseResult.ct2)}</span>
+              <span style={{ color: '#cccccc' }}>c2 = m2 ⊕ k: </span>
+              <span style={{ color: '#aaaaaa' }}>{hexToDisplay(reuseResult.ct2)}</span>
             </div>
             <div style={{ borderTop: '1px solid #2a1a1a', paddingTop: 8 }}>
               <div style={{ color: '#ff4444', marginBottom: 4 }}>c1 ⊕ c2 = m1 ⊕ m2 (klíč se vyruší):</div>
               <div style={{ color: '#ff9944' }}>{hexToDisplay(reuseResult.xored)}</div>
             </div>
             <div style={{ borderTop: '1px solid #2a1a1a', paddingTop: 8 }}>
-              <div style={{ color: '#00aa2b', marginBottom: 2 }}>Kontrola — skutečné m1 ⊕ m2:</div>
-              <div style={{ color: '#ffaa44' }}>
+              <div style={{ color: '#808080', marginBottom: 2 }}>Kontrola — skutečné m1 ⊕ m2:</div>
+              <div style={{ color: '#aaaaaa' }}>
                 {hexToDisplay(reuseResult.b1s.map((b, i) => b ^ reuseResult.b2s[i]))}
               </div>
               <div className="mt-2" style={{ color: '#ff4444' }}>

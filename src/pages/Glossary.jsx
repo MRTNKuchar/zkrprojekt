@@ -6,11 +6,11 @@ import { CaesarDiagram, EccDiagram, LatticeDiagram, OtpDiagram } from './glossar
 
 // ─── Category config ─────────────────────────────────────────────────────────
 const CAT = {
-  general: { cs: 'Obecné',  en: 'General', color: '#00aa2b' },
+  general: { cs: 'Obecné',  en: 'General', color: '#808080' },
   caesar:  { cs: 'Caesar',  en: 'Caesar',  color: '#ff4444' },
-  ecc:     { cs: 'ECC',     en: 'ECC',     color: '#00ff41' },
-  kyber:   { cs: 'Kyber',   en: 'Kyber',   color: '#44aaff' },
-  otp:     { cs: 'OTP',     en: 'OTP',     color: '#ffaa44' },
+  ecc:     { cs: 'ECC',     en: 'ECC',     color: '#e8e8e8' },
+  kyber:   { cs: 'Kyber',   en: 'Kyber',   color: '#cccccc' },
+  otp:     { cs: 'OTP',     en: 'OTP',     color: '#aaaaaa' },
 }
 
 // ─── Terms ───────────────────────────────────────────────────────────────────
@@ -147,22 +147,22 @@ const TERMS = [
 function TermCard({ term, lang }) {
   const cat = CAT[term.cat]
   return (
-    <div className="border p-3" style={{ borderColor: '#1a3a1a', backgroundColor: 'rgba(0,20,5,0.6)' }}>
+    <div className="border p-3" style={{ borderColor: '#2a2a2a', backgroundColor: 'rgba(8,8,8,0.6)' }}>
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs px-1.5 py-0.5 border"
           style={{ color: cat.color, borderColor: cat.color, fontFamily: 'Share Tech Mono, monospace', fontSize: '0.65rem' }}>
           {lang === 'cs' ? cat.cs : cat.en}
         </span>
       </div>
-      <div className="mb-0.5" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.15rem', lineHeight: 1.2 }}>
+      <div className="mb-0.5" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.15rem', lineHeight: 1.2 }}>
         {lang === 'cs' ? term.cs : term.en}
       </div>
       {term.cs !== term.en && (
-        <div className="mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace', fontSize: '0.65rem' }}>
+        <div className="mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace', fontSize: '0.65rem' }}>
           {lang === 'cs' ? term.en : term.cs}
         </div>
       )}
-      <div style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', fontSize: '0.72rem', lineHeight: 1.6 }}>
+      <div style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', fontSize: '0.72rem', lineHeight: 1.6 }}>
         {lang === 'cs' ? term.defCs : term.defEn}
       </div>
     </div>
@@ -171,11 +171,11 @@ function TermCard({ term, lang }) {
 
 function DiagramCard({ title, subtitle, color, children }) {
   return (
-    <div className="border p-4" style={{ borderColor: '#1a3a1a', backgroundColor: 'rgba(0,20,5,0.6)' }}>
+    <div className="border p-4" style={{ borderColor: '#2a2a2a', backgroundColor: 'rgba(8,8,8,0.6)' }}>
       <div className="mb-1" style={{ color, fontFamily: 'VT323, monospace', fontSize: '1.4rem' }}>
         ▸ {title}
       </div>
-      <div className="mb-4 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mb-4 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {subtitle}
       </div>
       {children}
@@ -212,19 +212,19 @@ export default function Glossary() {
       component: <CaesarDiagram lang={lang} />,
     },
     {
-      key: 'ecc', color: '#00ff41',
+      key: 'ecc', color: '#e8e8e8',
       title: 'ECC',
       subtitle: lang === 'cs' ? 'Skalární násobení na eliptické křivce + ECDH' : 'Scalar multiplication on elliptic curve + ECDH',
       component: <EccDiagram lang={lang} />,
     },
     {
-      key: 'kyber', color: '#44aaff',
+      key: 'kyber', color: '#cccccc',
       title: 'ML-KEM / Kyber',
       subtitle: lang === 'cs' ? 'Mřížkový problém (CVP / LWE)' : 'Lattice problem (CVP / LWE)',
       component: <LatticeDiagram lang={lang} />,
     },
     {
-      key: 'otp', color: '#ffaa44',
+      key: 'otp', color: '#aaaaaa',
       title: 'One-Time Pad',
       subtitle: lang === 'cs' ? 'XOR operace — šifrování a dešifrování' : 'XOR operation — encryption and decryption',
       component: <OtpDiagram lang={lang} />,
@@ -238,15 +238,15 @@ export default function Glossary() {
         {/* Header */}
         <div className="mb-8">
           <Link to="/" className="text-xs mb-2 inline-block transition-colors"
-            style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#00ff41'}
-            onMouseLeave={e => e.currentTarget.style.color = '#00aa2b'}>
+            style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace', textDecoration: 'none' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#e8e8e8'}
+            onMouseLeave={e => e.currentTarget.style.color = '#808080'}>
             {t.backBtn}
           </Link>
-          <h1 className="text-4xl md:text-5xl glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace' }}>
+          <h1 className="text-4xl md:text-5xl glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace' }}>
             {g.pageTitle}
           </h1>
-          <div className="text-xs mt-1" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+          <div className="text-xs mt-1" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
             {g.subtitle}
           </div>
         </div>
@@ -256,14 +256,14 @@ export default function Glossary() {
           {/* Filter + search bar */}
           <div className="flex flex-wrap items-center gap-2 mb-6">
             {/* Category filters */}
-            {[['all', g.filterAll, '#00aa2b'], ...Object.entries(CAT).map(([k, v]) => [k, lang === 'cs' ? v.cs : v.en, v.color])].map(([key, label, color]) => {
+            {[['all', g.filterAll, '#808080'], ...Object.entries(CAT).map(([k, v]) => [k, lang === 'cs' ? v.cs : v.en, v.color])].map(([key, label, color]) => {
               const active = activeFilter === key
               return (
                 <button key={key} onClick={() => setActiveFilter(key)}
                   style={{
                     fontFamily: 'Share Tech Mono, monospace', fontSize: '0.7rem',
                     padding: '3px 10px', cursor: 'pointer',
-                    color: active ? '#050f05' : color,
+                    color: active ? '#080808' : color,
                     backgroundColor: active ? color : 'transparent',
                     border: `1px solid ${color}`,
                   }}>
@@ -281,18 +281,18 @@ export default function Glossary() {
               style={{
                 marginLeft: 'auto',
                 fontFamily: 'Share Tech Mono, monospace', fontSize: '0.75rem',
-                background: 'rgba(0,20,5,0.6)', color: '#00ff41',
-                border: '1px solid #1a3a1a', padding: '3px 10px',
+                background: 'rgba(8,8,8,0.6)', color: '#e8e8e8',
+                border: '1px solid #2a2a2a', padding: '3px 10px',
                 outline: 'none', width: 200,
               }}
-              onFocus={e => e.currentTarget.style.borderColor = '#00ff41'}
-              onBlur={e => e.currentTarget.style.borderColor = '#1a3a1a'}
+              onFocus={e => e.currentTarget.style.borderColor = '#e8e8e8'}
+              onBlur={e => e.currentTarget.style.borderColor = '#2a2a2a'}
             />
           </div>
 
           {/* Terms grid */}
           {filtered.length === 0 ? (
-            <div className="text-sm" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div className="text-sm" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
               {g.noResults}
             </div>
           ) : (
@@ -307,7 +307,7 @@ export default function Glossary() {
         {/* ── DIAGRAMS SECTION ── */}
         <section>
           <h2 className="text-2xl mb-6 pb-2 border-b"
-            style={{ color: '#00ff41', fontFamily: 'VT323, monospace', borderColor: '#1a3a1a' }}>
+            style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', borderColor: '#2a2a2a' }}>
             {g.diagramsTitle}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

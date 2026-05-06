@@ -166,7 +166,7 @@ export default function KyberLab() {
     setDecrypted(decryptString(ciphertexts, keys.s))
   }
 
-  const btnStyle = (enabled, color = '#00ff41') => ({
+  const btnStyle = (enabled, color = '#e8e8e8') => ({
     fontFamily: 'Share Tech Mono, monospace',
     color: enabled ? color : '#333',
     borderColor: enabled ? color : '#333',
@@ -176,16 +176,16 @@ export default function KyberLab() {
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-6" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #00ff4166' }}>
+      <h2 className="text-2xl mb-6" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem', textShadow: '0 0 8px #e8e8e866' }}>
         {kl.title}
       </h2>
 
       {/* Code — od nuly */}
       <div className="mb-4">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {kl.codeTitle} — od nuly, bez závislostí
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           python lwe_scratch.py
         </div>
         <CodeBlock code={KYBER_CODE_SCRATCH} title="lwe_scratch.py" />
@@ -193,21 +193,21 @@ export default function KyberLab() {
 
       {/* Code — produkční */}
       <div className="mb-8">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ Produkční verze — kyber-py (ML-KEM / NIST FIPS 203)
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           pip install kyber-py &nbsp;→&nbsp; python mlkem_prod.py
         </div>
         <CodeBlock code={KYBER_CODE_PROD} title="mlkem_prod.py" />
       </div>
 
       {/* Interactive demo */}
-      <div className="border p-4 mb-6" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-        <h3 className="text-sm mb-1" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="border p-4 mb-6" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {kl.demoTitle}
         </h3>
-        <div className="text-xs mb-4" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-4" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           Parametry: n={DEMO_PARAMS.N}, q={DEMO_PARAMS.Q}, m={DEMO_PARAMS.M} &nbsp;|&nbsp; chyba ∈ &#123;-1, 0, 1&#125;
         </div>
 
@@ -217,7 +217,7 @@ export default function KyberLab() {
             onClick={handleGenerate}
             className="px-4 py-2 text-sm border transition-all"
             style={btnStyle(true)}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)'}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             {kl.genBtn}
@@ -225,26 +225,26 @@ export default function KyberLab() {
         </div>
 
         {keys && (
-          <div className="mb-4 border p-3 text-xs space-y-2 fade-in" style={{ borderColor: '#1a3a1a', fontFamily: 'Share Tech Mono, monospace' }}>
+          <div className="mb-4 border p-3 text-xs space-y-2 fade-in" style={{ borderColor: '#2a2a2a', fontFamily: 'Share Tech Mono, monospace' }}>
             <div>
-              <span style={{ color: '#ff6644' }}>{kl.privateKey}: </span>
+              <span style={{ color: '#cccccc' }}>{kl.privateKey}: </span>
               <span style={{ color: '#ff9944' }}>{fmtVec(keys.s)}</span>
               <span style={{ color: '#5a2a2a' }}> (TAJNÉ!)</span>
             </div>
             <div>
-              <span style={{ color: '#00aa2b' }}>{kl.pubVecLabel}: </span>
-              <span style={{ color: '#00ff41' }}>{fmtVec(keys.b.slice(0, 4))}…</span>
+              <span style={{ color: '#808080' }}>{kl.pubVecLabel}: </span>
+              <span style={{ color: '#e8e8e8' }}>{fmtVec(keys.b.slice(0, 4))}…</span>
             </div>
             <div>
-              <span style={{ color: '#00aa2b' }}>{kl.matrixLabel}: </span>
-              <span style={{ color: '#005515' }}>[{keys.A[0].slice(0, 4).join(', ')}, …]</span>
+              <span style={{ color: '#808080' }}>{kl.matrixLabel}: </span>
+              <span style={{ color: '#505050' }}>[{keys.A[0].slice(0, 4).join(', ')}, …]</span>
             </div>
           </div>
         )}
 
         {/* Encrypt */}
         <div className="mb-4">
-          <label className="block text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+          <label className="block text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
             {kl.msgLabel} (max {MAX_MSG_LEN} znaky):
           </label>
           <div className="flex gap-3 flex-wrap items-center">
@@ -254,10 +254,10 @@ export default function KyberLab() {
               className="border p-2 text-sm outline-none"
               style={{
                 backgroundColor: '#020a05',
-                borderColor: '#1a3a1a',
-                color: '#00ff41',
+                borderColor: '#2a2a2a',
+                color: '#e8e8e8',
                 fontFamily: 'Share Tech Mono, monospace',
-                caretColor: '#00ff41',
+                caretColor: '#e8e8e8',
                 width: '160px',
               }}
               placeholder={kl.msgPlaceholder}
@@ -266,26 +266,26 @@ export default function KyberLab() {
               onClick={handleEncrypt}
               disabled={!keys}
               className="px-4 py-2 text-sm border transition-all"
-              style={btnStyle(!!keys, '#ffaa44')}
+              style={btnStyle(!!keys, '#aaaaaa')}
               onMouseEnter={e => { if (keys) e.currentTarget.style.backgroundColor = 'rgba(255,170,68,0.1)' }}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
             >
               {kl.encBtn}
             </button>
           </div>
-          {!keys && <div className="mt-1 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>↑ {kl.noKeys}</div>}
+          {!keys && <div className="mt-1 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>↑ {kl.noKeys}</div>}
         </div>
 
         {ciphertexts && (
-          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#1a3a1a', fontFamily: 'Share Tech Mono, monospace' }}>
-            <div style={{ color: '#00aa2b', marginBottom: 4 }}>{kl.cipherLabel}:</div>
-            <div style={{ color: '#ffaa44' }}>
+          <div className="mb-4 border p-3 text-xs fade-in" style={{ borderColor: '#2a2a2a', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div style={{ color: '#808080', marginBottom: 4 }}>{kl.cipherLabel}:</div>
+            <div style={{ color: '#aaaaaa' }}>
               u = {fmtVec(ciphertexts[0].u)}
             </div>
-            <div style={{ color: '#ffaa44' }}>
+            <div style={{ color: '#aaaaaa' }}>
               v = {ciphertexts[0].v}
             </div>
-            <div className="mt-2" style={{ color: '#005515' }}>
+            <div className="mt-2" style={{ color: '#505050' }}>
               {ciphertexts.length} {kl.bitsInfo} ({msg.length} znak{msg.length > 1 ? 'y' : ''} × 8 bitů)
             </div>
           </div>
@@ -297,7 +297,7 @@ export default function KyberLab() {
             <button
               onClick={handleDecrypt}
               className="px-4 py-2 text-sm border transition-all"
-              style={btnStyle(true, '#44aaff')}
+              style={btnStyle(true, '#cccccc')}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(68,170,255,0.1)'}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
             >
@@ -308,15 +308,15 @@ export default function KyberLab() {
 
         {decrypted !== null && (
           <div className="border p-3 fade-in text-xs" style={{
-            borderColor: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#00ff41' : '#ff4444',
+            borderColor: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#e8e8e8' : '#ff4444',
             fontFamily: 'Share Tech Mono, monospace',
           }}>
-            <div style={{ color: '#00aa2b', marginBottom: 4 }}>{kl.decResult}:</div>
-            <div style={{ color: '#00ff41', fontSize: '1rem', fontFamily: 'VT323, monospace' }}>
+            <div style={{ color: '#808080', marginBottom: 4 }}>{kl.decResult}:</div>
+            <div style={{ color: '#e8e8e8', fontSize: '1rem', fontFamily: 'VT323, monospace' }}>
               "{decrypted}"
             </div>
             <div className="mt-2" style={{
-              color: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#00ff41' : '#ff4444',
+              color: decrypted === msg.slice(0, MAX_MSG_LEN) ? '#e8e8e8' : '#ff4444',
             }}>
               {kl.match}: {decrypted === msg.slice(0, MAX_MSG_LEN) ? 'ANO ✓ — šum byl dostatečně malý' : 'NE ✗ — zkus znovu (vzácná shoda chyb)'}
             </div>

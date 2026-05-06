@@ -13,17 +13,18 @@ export default function Navbar() {
     { to: '/ecc', label: t.nav.ecc },
     { to: '/kyber', label: t.nav.kyber },
     { to: '/otp', label: t.nav.otp },
+    { to: '/qkd', label: t.nav.qkd },
     { to: '/pojmy', label: t.nav.glossary },
   ]
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b"
-         style={{ backgroundColor: 'rgba(10,10,10,0.95)', borderColor: '#1a3a1a', backdropFilter: 'blur(4px)' }}>
+         style={{ backgroundColor: 'rgba(10,10,10,0.95)', borderColor: '#2a2a2a', backdropFilter: 'blur(4px)' }}>
       <div className="max-w-6xl mx-auto px-4 h-12 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="text-lg font-bold glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.4rem' }}>
-            KRYPTO<span style={{ color: '#00aa2b' }}>LAB</span>
+          <span className="text-lg font-bold glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.4rem' }}>
+            KRYPTO<span style={{ color: '#808080' }}>LAB</span>
           </span>
         </Link>
 
@@ -37,10 +38,10 @@ export default function Navbar() {
                 to={link.to}
                 className="px-3 py-1 text-sm transition-all duration-200"
                 style={{
-                  color: active ? '#00ff41' : '#00aa2b',
+                  color: active ? '#e8e8e8' : '#808080',
                   fontFamily: 'Share Tech Mono, monospace',
-                  borderBottom: active ? '1px solid #00ff41' : '1px solid transparent',
-                  textShadow: active ? '0 0 8px #00ff41' : 'none',
+                  borderBottom: active ? '1px solid #e8e8e8' : '1px solid transparent',
+                  textShadow: active ? '0 0 8px #e8e8e8' : 'none',
                 }}
               >
                 {link.label}
@@ -53,19 +54,19 @@ export default function Navbar() {
             onClick={toggleLang}
             className="ml-4 px-3 py-1 text-sm border transition-all duration-200"
             style={{
-              color: '#00ff41',
-              borderColor: '#00aa2b',
+              color: '#e8e8e8',
+              borderColor: '#808080',
               fontFamily: 'Share Tech Mono, monospace',
               background: 'transparent',
               cursor: 'pointer',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)'
-              e.currentTarget.style.borderColor = '#00ff41'
+              e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)'
+              e.currentTarget.style.borderColor = '#e8e8e8'
             }}
             onMouseLeave={e => {
               e.currentTarget.style.backgroundColor = 'transparent'
-              e.currentTarget.style.borderColor = '#00aa2b'
+              e.currentTarget.style.borderColor = '#808080'
             }}
           >
             [{t.nav.langToggle}]

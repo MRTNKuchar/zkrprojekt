@@ -1,6 +1,6 @@
-export default function TabBar({ tabs, activeTab, onTabChange, accentColor = '#00ff41' }) {
+export default function TabBar({ tabs, activeTab, onTabChange, accentColor = '#e8e8e8' }) {
   return (
-    <div className="flex border-b" style={{ borderColor: '#1a3a1a' }}>
+    <div className="flex border-b" style={{ borderColor: '#2a2a2a' }}>
       {tabs.map(tab => {
         const active = tab.id === activeTab
         return (
@@ -10,7 +10,7 @@ export default function TabBar({ tabs, activeTab, onTabChange, accentColor = '#0
             className="px-4 py-2 text-sm transition-all duration-200 relative"
             style={{
               fontFamily: 'Share Tech Mono, monospace',
-              color: active ? accentColor : '#00aa2b',
+              color: active ? accentColor : '#808080',
               background: active ? `${accentColor}11` : 'transparent',
               borderBottom: active ? `2px solid ${accentColor}` : '2px solid transparent',
               cursor: 'pointer',
@@ -25,7 +25,7 @@ export default function TabBar({ tabs, activeTab, onTabChange, accentColor = '#0
             }}
             onMouseLeave={e => {
               if (!active) {
-                e.currentTarget.style.color = '#00aa2b'
+                e.currentTarget.style.color = '#808080'
                 e.currentTarget.style.background = 'transparent'
               }
             }}

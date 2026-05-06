@@ -59,6 +59,17 @@ export function LockIcon({ size = '1em', style }) {
   )
 }
 
+export function AtomIcon({ size = '1em', style }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ ...base, ...style }}>
+      <ellipse cx="8" cy="8" rx="7" ry="3" />
+      <ellipse cx="8" cy="8" rx="7" ry="3" transform="rotate(60 8 8)" />
+      <ellipse cx="8" cy="8" rx="7" ry="3" transform="rotate(-60 8 8)" />
+      <circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
 export function PersonIcon({ size = '1em', style }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ ...base, ...style }}>

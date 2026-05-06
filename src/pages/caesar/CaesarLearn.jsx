@@ -5,23 +5,23 @@ function Section({ title, children }) {
   return (
     <div className="mb-8">
       <h3 className="text-lg mb-3 pb-1 border-b"
-          style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.3rem', borderColor: '#1a3a1a' }}>
+          style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.3rem', borderColor: '#2a2a2a' }}>
         ▸ {title}
       </h3>
-      <div style={{ color: '#00cc35', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div style={{ color: '#b0b0b0', fontFamily: 'Share Tech Mono, monospace' }}>
         {children}
       </div>
     </div>
   )
 }
 
-function InfoBox({ label, children, color = '#00ff41' }) {
+function InfoBox({ label, children, color = '#e8e8e8' }) {
   return (
-    <div className="border p-3 mb-3" style={{ borderColor: color, backgroundColor: `rgba(0,255,65,0.03)` }}>
+    <div className="border p-3 mb-3" style={{ borderColor: color, backgroundColor: `rgba(220,220,220,0.03)` }}>
       <div className="text-xs mb-1" style={{ color, fontFamily: 'Share Tech Mono, monospace' }}>
         ┌─ {label} ─
       </div>
-      <div className="text-sm" style={{ color: '#00cc35', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
+      <div className="text-sm" style={{ color: '#b0b0b0', fontFamily: 'Share Tech Mono, monospace', lineHeight: '1.6' }}>
         {children}
       </div>
     </div>
@@ -53,12 +53,12 @@ export default function CaesarLearn() {
 
   return (
     <div className="tab-content max-w-3xl">
-      <h2 className="text-3xl mb-6 glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace' }}>
+      <h2 className="text-3xl mb-6 glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace' }}>
         {cl.title}
       </h2>
 
       <Section title={cl.inventor}>
-        <InfoBox label={cl.inventorName} color="#ffaa00">
+        <InfoBox label={cl.inventorName} color="#aaaaaa">
           {cl.inventorText}
         </InfoBox>
       </Section>
@@ -67,38 +67,38 @@ export default function CaesarLearn() {
         <p className="text-sm mb-4 leading-relaxed">{cl.howWorksText}</p>
 
         {/* Visual demo */}
-        <div className="border p-4 mb-4" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-          <div className="text-xs mb-3" style={{ color: '#00aa2b' }}>{cl.example}:</div>
+        <div className="border p-4 mb-4" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+          <div className="text-xs mb-3" style={{ color: '#808080' }}>{cl.example}:</div>
           <div className="overflow-x-auto">
             <div className="flex gap-0 mb-1">
-              <span className="text-xs w-20 shrink-0" style={{ color: '#00aa2b' }}>{cl.alphabet} (A):</span>
+              <span className="text-xs w-20 shrink-0" style={{ color: '#808080' }}>{cl.alphabet} (A):</span>
               <div className="flex gap-1">
                 {alphabet.split('').map(c => (
-                  <span key={c} className="text-xs w-5 text-center" style={{ color: '#005515' }}>{c}</span>
+                  <span key={c} className="text-xs w-5 text-center" style={{ color: '#505050' }}>{c}</span>
                 ))}
               </div>
             </div>
             <div className="flex gap-0 mb-3">
-              <span className="text-xs w-20 shrink-0" style={{ color: '#00aa2b' }}>{cl.alphabet} (B):</span>
+              <span className="text-xs w-20 shrink-0" style={{ color: '#808080' }}>{cl.alphabet} (B):</span>
               <div className="flex gap-1">
                 {shifted.split('').map((c, i) => (
-                  <span key={i} className="text-xs w-5 text-center" style={{ color: '#00ff41' }}>{c}</span>
+                  <span key={i} className="text-xs w-5 text-center" style={{ color: '#e8e8e8' }}>{c}</span>
                 ))}
               </div>
             </div>
             <div className="flex gap-0 mb-1">
-              <span className="text-xs w-20 shrink-0" style={{ color: '#00aa2b' }}>{cl.plaintext}:</span>
+              <span className="text-xs w-20 shrink-0" style={{ color: '#808080' }}>{cl.plaintext}:</span>
               <div className="flex gap-1">
                 {examplePlain.split('').map((c, i) => (
-                  <span key={i} className="text-xs w-5 text-center font-bold" style={{ color: '#00ff41' }}>{c}</span>
+                  <span key={i} className="text-xs w-5 text-center font-bold" style={{ color: '#e8e8e8' }}>{c}</span>
                 ))}
               </div>
             </div>
             <div className="flex gap-0">
-              <span className="text-xs w-20 shrink-0" style={{ color: '#00aa2b' }}>{cl.ciphertext}:</span>
+              <span className="text-xs w-20 shrink-0" style={{ color: '#808080' }}>{cl.ciphertext}:</span>
               <div className="flex gap-1">
                 {exampleCipher.split('').map((c, i) => (
-                  <span key={i} className="text-xs w-5 text-center font-bold" style={{ color: '#ffaa00' }}>{c}</span>
+                  <span key={i} className="text-xs w-5 text-center font-bold" style={{ color: '#aaaaaa' }}>{c}</span>
                 ))}
               </div>
             </div>
@@ -111,13 +111,13 @@ export default function CaesarLearn() {
       </Section>
 
       <Section title={cl.historyCases}>
-        <InfoBox label={cl.case1Title} color="#00ff41">
+        <InfoBox label={cl.case1Title} color="#e8e8e8">
           {cl.case1Text}
         </InfoBox>
-        <InfoBox label={cl.case2Title} color="#ffaa00">
+        <InfoBox label={cl.case2Title} color="#aaaaaa">
           {cl.case2Text}
         </InfoBox>
-        <InfoBox label={cl.case3Title} color="#44aaff">
+        <InfoBox label={cl.case3Title} color="#cccccc">
           {cl.case3Text}
         </InfoBox>
       </Section>

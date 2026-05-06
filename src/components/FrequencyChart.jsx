@@ -22,7 +22,7 @@ export default function FrequencyChart({ text }) {
                   className="flex-1 transition-all duration-500"
                   style={{
                     height: `${obsH}%`,
-                    backgroundColor: '#00ff41',
+                    backgroundColor: '#e8e8e8',
                     opacity: 0.8,
                     minHeight: obs > 0 ? '2px' : '0',
                   }}
@@ -34,26 +34,26 @@ export default function FrequencyChart({ text }) {
                   style={{
                     height: `${expH}%`,
                     backgroundColor: '#004415',
-                    border: '1px solid #00aa2b',
+                    border: '1px solid #808080',
                     minHeight: '2px',
                   }}
                   title={`${letter} (EN): ${exp.toFixed(1)}%`}
                 />
               </div>
-              <span className="text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace', fontSize: '9px' }}>
+              <span className="text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace', fontSize: '9px' }}>
                 {letter}
               </span>
             </div>
           )
         })}
       </div>
-      <div className="flex gap-4 mt-2 text-xs" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="flex gap-4 mt-2 text-xs" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
         <span className="flex items-center gap-1">
-          <span className="inline-block w-3 h-3" style={{ backgroundColor: '#00ff41' }} />
+          <span className="inline-block w-3 h-3" style={{ backgroundColor: '#e8e8e8' }} />
           Nalezeno v textu
         </span>
         <span className="flex items-center gap-1">
-          <span className="inline-block w-3 h-3 border" style={{ backgroundColor: '#004415', borderColor: '#00aa2b' }} />
+          <span className="inline-block w-3 h-3 border" style={{ backgroundColor: '#004415', borderColor: '#808080' }} />
           Očekáváno (AJ)
         </span>
       </div>

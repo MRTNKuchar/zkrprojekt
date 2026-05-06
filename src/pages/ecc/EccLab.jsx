@@ -269,16 +269,16 @@ export default function EccLab() {
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-6 glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
+      <h2 className="text-2xl mb-6 glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
         {el.title}
       </h2>
 
       {/* Code — od nuly */}
       <div className="mb-4">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {el.codeTitle} — od nuly, bez závislostí
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           python ecc_scratch.py
         </div>
         <CodeBlock code={ECC_CODE_SCRATCH} title="ecc_scratch.py" />
@@ -286,75 +286,75 @@ export default function EccLab() {
 
       {/* Code — produkční */}
       <div className="mb-8">
-        <h3 className="text-sm mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+        <h3 className="text-sm mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ Produkční verze — knihovna cryptography (P-256)
         </h3>
-        <div className="text-xs mb-2" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="text-xs mb-2" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
           pip install cryptography &nbsp;→&nbsp; python ecc_prod.py
         </div>
         <CodeBlock code={ECC_CODE_PROD} title="ecc_prod.py" />
       </div>
 
       {/* ECDH simulation */}
-      <div className="border p-4 mb-6" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-        <h3 className="text-sm mb-4" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="border p-4 mb-6" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+        <h3 className="text-sm mb-4" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
           ▸ {el.ecdhTitle}
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {/* Alice */}
-          <div className="border p-3" style={{ borderColor: '#44aaff' }}>
-            <div className="text-center text-sm mb-3" style={{ color: '#44aaff', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
+          <div className="border p-3" style={{ borderColor: '#cccccc' }}>
+            <div className="text-center text-sm mb-3" style={{ color: '#cccccc', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
               <PersonIcon size="1em" /> {el.aliceLabel}
             </div>
             {aliceKeys ? (
               <div className="space-y-2 text-xs" style={{ fontFamily: 'Share Tech Mono, monospace' }}>
                 <div>
-                  <span style={{ color: '#ff6666' }}>{el.privateKey}: </span>
+                  <span style={{ color: '#bbbbbb' }}>{el.privateKey}: </span>
                   <span style={{ color: '#ff4444' }}>{aliceKeys.privateKey} (TAJNÉ!)</span>
                 </div>
                 <div>
-                  <span style={{ color: '#00aa2b' }}>{el.publicKey}: </span>
-                  <span style={{ color: '#00ff41' }}>{pointToHex(aliceKeys.publicKey)}</span>
+                  <span style={{ color: '#808080' }}>{el.publicKey}: </span>
+                  <span style={{ color: '#e8e8e8' }}>{pointToHex(aliceKeys.publicKey)}</span>
                 </div>
                 {aliceShared && (
                   <div>
-                    <span style={{ color: '#ffaa00' }}>{el.sharedSecret}: </span>
-                    <span style={{ color: '#ffcc44' }}>{pointToHex(aliceShared)}</span>
+                    <span style={{ color: '#aaaaaa' }}>{el.sharedSecret}: </span>
+                    <span style={{ color: '#bbbbbb' }}>{pointToHex(aliceShared)}</span>
                   </div>
                 )}
               </div>
             ) : (
-              <div className="text-xs text-center" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+              <div className="text-xs text-center" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
                 — klíče nebyly vygenerovány —
               </div>
             )}
           </div>
 
           {/* Bob */}
-          <div className="border p-3" style={{ borderColor: '#ffaa00' }}>
-            <div className="text-center text-sm mb-3" style={{ color: '#ffaa00', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
+          <div className="border p-3" style={{ borderColor: '#aaaaaa' }}>
+            <div className="text-center text-sm mb-3" style={{ color: '#aaaaaa', fontFamily: 'VT323, monospace', fontSize: '1.3rem' }}>
               <PersonIcon size="1em" /> {el.bobLabel}
             </div>
             {bobKeys ? (
               <div className="space-y-2 text-xs" style={{ fontFamily: 'Share Tech Mono, monospace' }}>
                 <div>
-                  <span style={{ color: '#ff6666' }}>{el.privateKey}: </span>
+                  <span style={{ color: '#bbbbbb' }}>{el.privateKey}: </span>
                   <span style={{ color: '#ff4444' }}>{bobKeys.privateKey} (TAJNÉ!)</span>
                 </div>
                 <div>
-                  <span style={{ color: '#00aa2b' }}>{el.publicKey}: </span>
-                  <span style={{ color: '#00ff41' }}>{pointToHex(bobKeys.publicKey)}</span>
+                  <span style={{ color: '#808080' }}>{el.publicKey}: </span>
+                  <span style={{ color: '#e8e8e8' }}>{pointToHex(bobKeys.publicKey)}</span>
                 </div>
                 {bobShared && (
                   <div>
-                    <span style={{ color: '#ffaa00' }}>{el.sharedSecret}: </span>
-                    <span style={{ color: '#ffcc44' }}>{pointToHex(bobShared)}</span>
+                    <span style={{ color: '#aaaaaa' }}>{el.sharedSecret}: </span>
+                    <span style={{ color: '#bbbbbb' }}>{pointToHex(bobShared)}</span>
                   </div>
                 )}
               </div>
             ) : (
-              <div className="text-xs text-center" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+              <div className="text-xs text-center" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
                 — klíče nebyly vygenerovány —
               </div>
             )}
@@ -365,10 +365,10 @@ export default function EccLab() {
         {exchangeDone && (
           <div className="border p-2 mb-4 text-center text-sm fade-in"
                style={{
-                 borderColor: secretMatch ? '#00ff41' : '#ff4444',
-                 color: secretMatch ? '#00ff41' : '#ff4444',
+                 borderColor: secretMatch ? '#e8e8e8' : '#ff4444',
+                 color: secretMatch ? '#e8e8e8' : '#ff4444',
                  fontFamily: 'Share Tech Mono, monospace',
-                 textShadow: secretMatch ? '0 0 8px #00ff41' : '0 0 8px #ff4444',
+                 textShadow: secretMatch ? '0 0 8px #e8e8e8' : '0 0 8px #ff4444',
                }}>
             {secretMatch ? `✓ ${el.sharedSecretMatch}` : '✗ Tajemství se neshodují!'}
           </div>
@@ -380,12 +380,12 @@ export default function EccLab() {
             className="px-4 py-2 text-sm border transition-all"
             style={{
               fontFamily: 'Share Tech Mono, monospace',
-              color: '#00ff41',
-              borderColor: '#00ff41',
+              color: '#e8e8e8',
+              borderColor: '#e8e8e8',
               background: 'transparent',
               cursor: 'pointer',
             }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)'}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
           >
             {el.generateBtn}
@@ -396,8 +396,8 @@ export default function EccLab() {
             className="px-4 py-2 text-sm border transition-all"
             style={{
               fontFamily: 'Share Tech Mono, monospace',
-              color: aliceKeys && bobKeys ? '#ffaa00' : '#333',
-              borderColor: aliceKeys && bobKeys ? '#ffaa00' : '#333',
+              color: aliceKeys && bobKeys ? '#aaaaaa' : '#333',
+              borderColor: aliceKeys && bobKeys ? '#aaaaaa' : '#333',
               background: 'transparent',
               cursor: aliceKeys && bobKeys ? 'pointer' : 'not-allowed',
             }}
@@ -412,24 +412,24 @@ export default function EccLab() {
       {/* Curve visualization + Sign/Verify */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Curve */}
-        <div className="border p-4" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-          <h3 className="text-sm mb-3" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="border p-4" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+          <h3 className="text-sm mb-3" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
             ▸ {el.curveTitle}
           </h3>
           <EccCurveVis highlightPoint={highlightPt} />
-          <div className="mt-2 text-xs whitespace-pre-line" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+          <div className="mt-2 text-xs whitespace-pre-line" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
             {el.curveInfo}
           </div>
         </div>
 
         {/* Sign/Verify */}
-        <div className="border p-4" style={{ borderColor: '#1a3a1a', backgroundColor: '#050f05' }}>
-          <h3 className="text-sm mb-4" style={{ color: '#00ff41', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div className="border p-4" style={{ borderColor: '#2a2a2a', backgroundColor: '#080808' }}>
+          <h3 className="text-sm mb-4" style={{ color: '#e8e8e8', fontFamily: 'Share Tech Mono, monospace' }}>
             ▸ {el.signTitle}
           </h3>
 
           <div className="mb-3">
-            <label className="block text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+            <label className="block text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
               {el.msgLabel}:
             </label>
             <input
@@ -438,21 +438,21 @@ export default function EccLab() {
               className="w-full border p-2 text-sm outline-none"
               style={{
                 backgroundColor: '#020a02',
-                borderColor: '#1a3a1a',
-                color: '#00ff41',
+                borderColor: '#2a2a2a',
+                color: '#e8e8e8',
                 fontFamily: 'Share Tech Mono, monospace',
-                caretColor: '#00ff41',
+                caretColor: '#e8e8e8',
               }}
               placeholder={el.msgPlaceholder}
             />
           </div>
 
           {signature && (
-            <div className="mb-3 border p-2" style={{ borderColor: '#1a3a1a' }}>
-              <div className="text-xs mb-1" style={{ color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div className="mb-3 border p-2" style={{ borderColor: '#2a2a2a' }}>
+              <div className="text-xs mb-1" style={{ color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
                 {el.signatureLabel}:
               </div>
-              <div className="text-xs break-all" style={{ color: '#ffaa00', fontFamily: 'Share Tech Mono, monospace' }}>
+              <div className="text-xs break-all" style={{ color: '#aaaaaa', fontFamily: 'Share Tech Mono, monospace' }}>
                 {sigToHex(signature)}
               </div>
             </div>
@@ -461,8 +461,8 @@ export default function EccLab() {
           {verifyResult !== null && (
             <div className="mb-2 border p-2 fade-in text-xs"
                  style={{
-                   borderColor: verifyResult ? '#00ff41' : '#ff4444',
-                   color: verifyResult ? '#00ff41' : '#ff4444',
+                   borderColor: verifyResult ? '#e8e8e8' : '#ff4444',
+                   color: verifyResult ? '#e8e8e8' : '#ff4444',
                    fontFamily: 'Share Tech Mono, monospace',
                  }}>
               {verifyResult ? `✓ ${el.verifyOk}` : `✗ ${el.verifyFail}`}
@@ -472,8 +472,8 @@ export default function EccLab() {
           {verifyTamper !== null && (
             <div className="mb-2 border p-2 fade-in text-xs"
                  style={{
-                   borderColor: verifyTamper ? '#00ff41' : '#ff4444',
-                   color: verifyTamper ? '#00ff41' : '#ff4444',
+                   borderColor: verifyTamper ? '#e8e8e8' : '#ff4444',
+                   color: verifyTamper ? '#e8e8e8' : '#ff4444',
                    fontFamily: 'Share Tech Mono, monospace',
                  }}>
               Pozměněná zpráva: {verifyTamper ? `✓ ${el.verifyOk}` : `✗ ${el.verifyFail}`}
@@ -482,7 +482,7 @@ export default function EccLab() {
 
           {signature && (
             <div className="mb-3">
-              <label className="block text-xs mb-1" style={{ color: '#ffaa00', fontFamily: 'Share Tech Mono, monospace' }}>
+              <label className="block text-xs mb-1" style={{ color: '#aaaaaa', fontFamily: 'Share Tech Mono, monospace' }}>
                 Pozměnit zprávu (demo):
               </label>
               <input
@@ -493,7 +493,7 @@ export default function EccLab() {
                 style={{
                   backgroundColor: '#0a0202',
                   borderColor: '#3a1a1a',
-                  color: '#ff6666',
+                  color: '#bbbbbb',
                   fontFamily: 'Share Tech Mono, monospace',
                   caretColor: '#ff4444',
                 }}
@@ -508,12 +508,12 @@ export default function EccLab() {
               className="px-3 py-1.5 text-xs border transition-all"
               style={{
                 fontFamily: 'Share Tech Mono, monospace',
-                color: aliceKeys ? '#00ff41' : '#333',
-                borderColor: aliceKeys ? '#00ff41' : '#333',
+                color: aliceKeys ? '#e8e8e8' : '#333',
+                borderColor: aliceKeys ? '#e8e8e8' : '#333',
                 background: 'transparent',
                 cursor: aliceKeys ? 'pointer' : 'not-allowed',
               }}
-              onMouseEnter={e => { if (aliceKeys) e.currentTarget.style.backgroundColor = 'rgba(0,255,65,0.1)' }}
+              onMouseEnter={e => { if (aliceKeys) e.currentTarget.style.backgroundColor = 'rgba(220,220,220,0.1)' }}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
             >
               {el.signBtn}
@@ -524,8 +524,8 @@ export default function EccLab() {
               className="px-3 py-1.5 text-xs border transition-all"
               style={{
                 fontFamily: 'Share Tech Mono, monospace',
-                color: signature ? '#44aaff' : '#333',
-                borderColor: signature ? '#44aaff' : '#333',
+                color: signature ? '#cccccc' : '#333',
+                borderColor: signature ? '#cccccc' : '#333',
                 background: 'transparent',
                 cursor: signature ? 'pointer' : 'not-allowed',
               }}
@@ -554,7 +554,7 @@ export default function EccLab() {
           </div>
 
           {!aliceKeys && (
-            <div className="mt-3 text-xs" style={{ color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+            <div className="mt-3 text-xs" style={{ color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
               ↑ Nejdřív vygeneruj klíče výše
             </div>
           )}

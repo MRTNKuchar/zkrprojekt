@@ -111,15 +111,15 @@ export default function CaesarTerminal() {
 
   return (
     <div className="tab-content">
-      <h2 className="text-2xl mb-4 glow" style={{ color: '#00ff41', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
+      <h2 className="text-2xl mb-4 glow" style={{ color: '#e8e8e8', fontFamily: 'VT323, monospace', fontSize: '1.8rem' }}>
         {tt.title}
       </h2>
 
       {/* Context */}
-      <div className="border p-3 mb-4 text-xs" style={{ borderColor: '#1a3a1a', color: '#00aa2b', fontFamily: 'Share Tech Mono, monospace' }}>
-        <div style={{ color: '#ffaa00' }}>SCÉNÁŘ:</div>
+      <div className="border p-3 mb-4 text-xs" style={{ borderColor: '#2a2a2a', color: '#808080', fontFamily: 'Share Tech Mono, monospace' }}>
+        <div style={{ color: '#aaaaaa' }}>SCÉNÁŘ:</div>
         <div>Zachytili jste šifrovanou komunikaci. Víte, že je použita Caesarova šifra, ale neznáte klíč.</div>
-        <div>Zpráva: <span style={{ color: '#00ff41' }}>"{TARGET}"</span></div>
+        <div>Zpráva: <span style={{ color: '#e8e8e8' }}>"{TARGET}"</span></div>
         <div className="mt-1">Použij terminál pro prolomení šifry.</div>
       </div>
 
@@ -130,12 +130,12 @@ export default function CaesarTerminal() {
       />
 
       {/* Hints */}
-      <div className="mt-4 border p-3 text-xs" style={{ borderColor: '#1a3a1a', color: '#005515', fontFamily: 'Share Tech Mono, monospace' }}>
+      <div className="mt-4 border p-3 text-xs" style={{ borderColor: '#2a2a2a', color: '#505050', fontFamily: 'Share Tech Mono, monospace' }}>
         {tt.hint} &nbsp;
-        <span style={{ color: '#00aa2b' }}>run attack</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00aa2b' }}>show analysis</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00aa2b' }}>target</span> &nbsp;|&nbsp;
-        <span style={{ color: '#00aa2b' }}>reset</span>
+        <span style={{ color: '#808080' }}>run attack</span> &nbsp;|&nbsp;
+        <span style={{ color: '#808080' }}>show analysis</span> &nbsp;|&nbsp;
+        <span style={{ color: '#808080' }}>target</span> &nbsp;|&nbsp;
+        <span style={{ color: '#808080' }}>reset</span>
       </div>
     </div>
   )
